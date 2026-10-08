@@ -1,3 +1,6 @@
 source-art/*.png
 .DS_Store
 __pycache__/
+node_modules/
+dist/
+*.tsbuildinfo
