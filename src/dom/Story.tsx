@@ -19,15 +19,12 @@ function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
         <div className="card">
           <dl className="details">
             <dt>Date</dt>
-            <dd>to be added</dd>
+            <dd>{data.date}</dd>
             <dt>Time</dt>
-            <dd>to be added</dd>
+            <dd>{data.time}</dd>
             <dt>Venue</dt>
-            <dd>to be added</dd>
+            <dd>{data.venue}</dd>
           </dl>
-          <p className="dress">
-            <b>Dress code</b> · {data.dress}
-          </p>
         </div>
       </div>
     </section>
@@ -49,7 +46,7 @@ export default function Story() {
         <p className="lede">Scratch the gold card to reveal them.</p>
         <ScratchCard onReveal={() => setRevealed(true)} />
         <Countdown live={revealed} />
-        <p className="sample">Counting down to a sample date until the real one is set.</p>
+        <p className="sample">Counting down to the celebrations in Indore.</p>
       </section>
       <footer className="next">
         <p>RSVP comes next.</p>

@@ -6,9 +6,13 @@ export interface ChapterData {
   long?: boolean
   hi: string
   lede: string
-  dress: string
+  date: string
+  time: string
+  venue: string
   style: CSSProperties
 }
+
+const VENUE = 'TCL, Bypass, Indore'
 
 export const CHAPTERS: ChapterData[] = [
   {
@@ -16,7 +20,9 @@ export const CHAPTERS: ChapterData[] = [
     title: 'Haldi',
     hi: 'हल्दी',
     lede: 'Turmeric, marigolds and a lot of laughter to begin the celebrations.',
-    dress: 'shades of yellow',
+    date: '10 December',
+    time: '11:30 AM',
+    venue: VENUE,
     style: {
       ['--tc' as string]: '#5a1e0a',
       ['--ts' as string]: '0 0 14px rgba(255,246,214,.95), 0 0 2px rgba(255,246,214,.9)',
@@ -28,7 +34,9 @@ export const CHAPTERS: ChapterData[] = [
     title: 'Sangeet',
     hi: 'संगीत',
     lede: 'An evening of music, dhol and dancing under the lights.',
-    dress: 'black, white and sparkle',
+    date: '10 December',
+    time: '8:00 PM onwards',
+    venue: VENUE,
     style: {
       ['--tc' as string]: '#fff',
       ['--ts' as string]: '0 0 6px #ff8fe0, 0 0 20px #ff3fb4, 0 0 44px #a83cff',
@@ -41,7 +49,9 @@ export const CHAPTERS: ChapterData[] = [
     long: true,
     hi: 'बारात और फेरे',
     lede: 'The baraat arrives, and seven rounds around the sacred fire.',
-    dress: 'traditional',
+    date: '11 December',
+    time: '1:00 PM onwards',
+    venue: VENUE,
     style: {
       ['--tc' as string]: '#5a1414',
       ['--ts' as string]: '0 0 14px rgba(255,248,240,.95), 0 0 2px rgba(255,248,240,.9)',
@@ -53,7 +63,9 @@ export const CHAPTERS: ChapterData[] = [
     title: 'Reception',
     hi: 'स्वागत समारोह',
     lede: 'Dinner, blessings and a night to celebrate together.',
-    dress: 'evening formal',
+    date: '11 December',
+    time: '8:00 PM onwards',
+    venue: VENUE,
     style: {
       ['--tc' as string]: '#ffe3a0',
       ['--ts' as string]: '0 0 18px rgba(255,190,90,.7), 0 2px 8px rgba(0,0,0,.7)',
@@ -63,10 +75,10 @@ export const CHAPTERS: ChapterData[] = [
 ]
 
 export const DATE_ROWS = [
-  { label: 'Haldi', value: 'date to be added' },
-  { label: 'Sangeet', value: 'date to be added' },
-  { label: 'Baraat & Phere', value: 'date to be added' },
-  { label: 'Reception', value: 'date to be added' },
+  { label: 'Haldi', value: '10 December · 11:30 AM' },
+  { label: 'Sangeet', value: '10 December · 8:00 PM' },
+  { label: 'Baraat & Phere', value: '11 December · 1:00 PM' },
+  { label: 'Reception', value: '11 December · 8:00 PM' },
 ]
 
 export function OrnSVG() {

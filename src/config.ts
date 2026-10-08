@@ -13,7 +13,9 @@ export interface InviteConfig {
 }
 
 export const CONFIG: InviteConfig = {
-  weddingDate: '2026-11-28T19:00:00+05:30',
+  // Countdown target: Haldi (first celebration), 10 Dec 11:30 AM IST.
+  // Confirm the YEAR — carried over from the previous sample (2026).
+  weddingDate: '2026-12-10T11:30:00+05:30',
 
   hostFamily: '',
 
