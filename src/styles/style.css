@@ -88,8 +88,21 @@
     padding: calc(env(safe-area-inset-top, 0px) + 7svh) 6% calc(env(safe-area-inset-bottom, 0px) + 4svh);
     opacity: clamp(0, calc(1 - var(--x, 0) * 2.2), 1);
   }
-  .pin::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 40%; background: var(--scrim-top, none); z-index: -1; opacity: clamp(0, calc(var(--tx, 0) * 1.5), 1); }
-  .pin::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(transparent, rgba(10,4,10,.55)); z-index: -1; opacity: clamp(0, calc(var(--p, 0) * 5 - .6), 1); }
+  /* Scrims span the full height and ease out with a long transparent tail, so the
+     darkening has no visible terminal edge (the old fixed-height boxes read as a
+     horizontal "gradient line", especially over flatter backgrounds). */
+  .pin::before { content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(to bottom,
+      var(--scrim-top, transparent) 0%,
+      color-mix(in srgb, var(--scrim-top, transparent) 30%, transparent) 22%,
+      transparent 52%);
+    opacity: clamp(0, calc(var(--tx, 0) * 1.5), 1); }
+  .pin::after { content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(to top,
+      rgba(10,4,10,.55) 0%,
+      rgba(10,4,10,.16) 20%,
+      transparent 48%);
+    opacity: clamp(0, calc(var(--p, 0) * 5 - .6), 1); }
   .title {
     font-family: var(--script); font-weight: 400; font-size: clamp(4.4rem, 21vw, 8rem); line-height: 1.12; margin: 0; padding: 0 .25em;
     color: var(--tc); text-shadow: var(--ts);

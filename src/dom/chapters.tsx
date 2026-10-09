@@ -26,7 +26,7 @@ export const CHAPTERS: ChapterData[] = [
     style: {
       ['--tc' as string]: '#5a1e0a',
       ['--ts' as string]: '0 0 14px rgba(255,246,214,.95), 0 0 2px rgba(255,246,214,.9)',
-      ['--scrim-top' as string]: 'linear-gradient(rgba(255,244,210,.55), transparent)',
+      ['--scrim-top' as string]: 'rgba(255,244,210,.55)',
     },
   },
   {
@@ -40,7 +40,7 @@ export const CHAPTERS: ChapterData[] = [
     style: {
       ['--tc' as string]: '#fff',
       ['--ts' as string]: '0 0 6px #ff8fe0, 0 0 20px #ff3fb4, 0 0 44px #a83cff',
-      ['--scrim-top' as string]: 'linear-gradient(rgba(12,8,40,.65), transparent)',
+      ['--scrim-top' as string]: 'rgba(12,8,40,.65)',
     },
   },
   {
@@ -55,7 +55,7 @@ export const CHAPTERS: ChapterData[] = [
     style: {
       ['--tc' as string]: '#5a1414',
       ['--ts' as string]: '0 0 14px rgba(255,248,240,.95), 0 0 2px rgba(255,248,240,.9)',
-      ['--scrim-top' as string]: 'linear-gradient(rgba(255,246,240,.6), transparent)',
+      ['--scrim-top' as string]: 'rgba(255,246,240,.6)',
     },
   },
   {
@@ -69,7 +69,7 @@ export const CHAPTERS: ChapterData[] = [
     style: {
       ['--tc' as string]: '#ffe3a0',
       ['--ts' as string]: '0 0 18px rgba(255,190,90,.7), 0 2px 8px rgba(0,0,0,.7)',
-      ['--scrim-top' as string]: 'linear-gradient(rgba(20,10,30,.6), transparent)',
+      ['--scrim-top' as string]: 'rgba(20,10,30,.6)',
     },
   },
 ]
