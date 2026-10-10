@@ -5,7 +5,7 @@ let rafId = 0
 
 // Eased scroll with a controllable (deliberately unhurried) duration — the
 // browser's native smooth-scroll is too quick for the cinematic transitions.
-function smoothScrollTo(target: number, duration = 1900) {
+function smoothScrollTo(target: number, duration = 2700) {
   const start = window.scrollY || window.pageYOffset || 0
   const dist = Math.max(0, Math.round(target)) - start
   cancelAnimationFrame(rafId)
