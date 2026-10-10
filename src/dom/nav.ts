@@ -1,7 +1,19 @@
 import { shared } from '../state/store'
-import { easeIO } from '../util'
 
 let rafId = 0
+
+// Constant-velocity easing with short smooth accel/decel at the ends (a
+// trapezoid velocity profile). Unlike ease-in-out, the middle is NOT fast — so
+// the scene crossfade, which happens mid-scroll, plays at a steady slow pace.
+function trapEase(t: number): number {
+  const a = 0.18 // fraction of time spent accelerating / decelerating
+  if (t < a) return (t * t) / (2 * a * (1 - a))
+  if (t > 1 - a) {
+    const u = 1 - t
+    return 1 - (u * u) / (2 * a * (1 - a))
+  }
+  return (t - a / 2) / (1 - a)
+}
 
 // Eased scroll with a deliberately unhurried, controllable duration — the
 // browser's native smooth-scroll is too quick for the cinematic transitions.
@@ -19,7 +31,7 @@ function smoothScrollTo(target: number, duration = 9000) {
   const t0 = performance.now()
   function step(now: number) {
     const k = Math.min(1, (now - t0) / duration)
-    window.scrollTo(0, Math.round(start + dist * easeIO(k)))
+    window.scrollTo(0, Math.round(start + dist * trapEase(k)))
     if (k < 1) rafId = requestAnimationFrame(step)
   }
   rafId = requestAnimationFrame(step)
