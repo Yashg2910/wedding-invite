@@ -22,7 +22,7 @@ function timeline(reduce: boolean) {
   if (reduce) {
     return { door: 0.8, open: 0.6, startDolly: 0, dolly: 0, flash: 0.9, switch: 1.5, revStart: 1.65, revDur: 0.3, flashOff: 1.62 }
   }
-  return { door: 2.3, open: 1.3, startDolly: 1.05, dolly: 1.95, flash: 2.55, switch: 3.15, revStart: 3.3, revDur: 1.9, flashOff: 3.27 }
+  return { door: 3.1, open: 1.75, startDolly: 1.4, dolly: 2.6, flash: 3.55, switch: 4.2, revStart: 4.4, revDur: 2.9, flashOff: 4.32 }
 }
 
 export default function Scene({ beckonRef, flashRef, threadBeadRef }: Props) {
@@ -135,7 +135,7 @@ export default function Scene({ beckonRef, flashRef, threadBeadRef }: Props) {
     const now = state.clock.elapsedTime
     time.value = now
     const dt = Math.min(0.05, Math.max(0, delta))
-    const kk = 1 - Math.exp(-dt * 7)
+    const kk = 1 - Math.exp(-dt * 4.5)
     gl.getDrawingBufferSize(res)
 
     const p = ptr.current

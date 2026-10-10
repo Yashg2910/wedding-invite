@@ -106,12 +106,12 @@
     border: 1px solid rgba(255,244,205,.65); border-radius: 999px; padding: .72rem 1.5rem;
     display: inline-flex; align-items: center; gap: .5em;
     box-shadow: 0 12px 28px -12px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.55);
-    animation: nextpulse 2.4s ease-in-out infinite;
+    animation: nextpulse 3.2s ease-in-out infinite;
   }
   .next-btn:focus-visible { outline: 3px solid #ffd98a; outline-offset: 3px; }
   .next-btn .arr { font-size: 1.05em; line-height: 1; }
   .next-hand { width: 58px; margin-top: 2px; transform-origin: 50% 0;
-    animation: tapcue 2.2s cubic-bezier(.45,0,.3,1) infinite;
+    animation: tapcue 2.9s cubic-bezier(.45,0,.3,1) infinite;
     filter: drop-shadow(0 0 8px rgba(255,205,120,.3)) drop-shadow(0 6px 8px rgba(0,0,0,.6)); }
   .next-hand svg { display: block; width: 100%; height: auto; }
   @keyframes tapcue { 0%, 100% { transform: translateY(10px); } 45% { transform: translateY(-2px); } 54% { transform: translateY(2px); } }

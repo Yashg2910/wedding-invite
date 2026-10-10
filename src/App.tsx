@@ -44,7 +44,7 @@ export default function App() {
       document.documentElement.classList.remove('locked')
       window.scrollTo(0, 0)
       // After the entry reveal settles, glide the first event's card + CTA into view.
-      const t = setTimeout(() => scrollToSlot(0), 1500)
+      const t = setTimeout(() => scrollToSlot(0), 2200)
       return () => clearTimeout(t)
     }
   }, [mode])
