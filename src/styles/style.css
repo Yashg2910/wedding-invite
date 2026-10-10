@@ -88,21 +88,23 @@
     padding: calc(env(safe-area-inset-top, 0px) + 7svh) 6% calc(env(safe-area-inset-bottom, 0px) + 4svh);
     opacity: clamp(0, calc(1 - var(--x, 0) * 2.2), 1);
   }
-  /* Scrims span the full height and ease out with a long transparent tail, so the
-     darkening has no visible terminal edge (the old fixed-height boxes read as a
-     horizontal "gradient line", especially over flatter backgrounds). */
-  .pin::before { content: ""; position: absolute; inset: 0; z-index: -1;
-    background: linear-gradient(to bottom,
-      var(--scrim-top, transparent) 0%,
-      color-mix(in srgb, var(--scrim-top, transparent) 30%, transparent) 22%,
-      transparent 52%);
-    opacity: clamp(0, calc(var(--tx, 0) * 1.5), 1); }
-  .pin::after { content: ""; position: absolute; inset: 0; z-index: -1;
-    background: linear-gradient(to top,
-      rgba(10,4,10,.55) 0%,
-      rgba(10,4,10,.16) 20%,
-      transparent 48%);
-    opacity: clamp(0, calc(var(--p, 0) * 5 - .6), 1); }
+  /* No top/bottom scrim overlays: the fixed-height gradient boxes read as a
+     horizontal "gradient line" over flatter backgrounds. Legibility is carried
+     by the titles' own text-shadows and the card's solid background instead. */
+
+  /* Scroll hint: a bouncing down-chevron prompting the guest to scroll. Visible
+     when a chapter first appears (--p low) and fades out as they scroll into it. */
+  .scroll-hint {
+    position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 2.6svh);
+    transform: translateX(-50%); pointer-events: none; z-index: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 8px 16px 7px; border-radius: 999px; color: #ffe8c2;
+    background: rgba(16,7,20,.5); box-shadow: 0 2px 14px -4px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,220,160,.28);
+    opacity: clamp(0, calc(1 - var(--p, 0) * 9), 1);
+  }
+  .scroll-hint .sh-label { font-family: var(--caps); font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; opacity: .9; }
+  .scroll-hint svg { display: block; width: 26px; height: auto; animation: scrollbob 1.5s ease-in-out infinite; }
+  @keyframes scrollbob { 0%, 100% { transform: translateY(-2px); opacity: .6; } 50% { transform: translateY(4px); opacity: 1; } }
   .title {
     font-family: var(--script); font-weight: 400; font-size: clamp(4.4rem, 21vw, 8rem); line-height: 1.12; margin: 0; padding: 0 .25em;
     color: var(--tc); text-shadow: var(--ts);
@@ -157,6 +159,6 @@
   .thread i { position: absolute; left: 50%; top: var(--p, 0%); width: 10px; height: 10px; border-radius: 50%; transform: translate(-50%, -50%); background: #ffd98a; box-shadow: 0 0 10px 3px rgba(255,200,100,.75); }
 
   @media (prefers-reduced-motion: reduce) {
-    .hand svg, .ripple, .gold-text { animation: none !important; }
+    .hand svg, .ripple, .gold-text, .scroll-hint svg { animation: none !important; }
     .gtext > * { animation-duration: .01ms !important; }
   }

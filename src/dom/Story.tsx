@@ -26,6 +26,12 @@ function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
             <dd>{data.venue}</dd>
           </dl>
         </div>
+        <div className="scroll-hint" aria-hidden="true">
+          <span className="sh-label">Scroll</span>
+          <svg viewBox="0 0 24 14" fill="none" aria-hidden="true">
+            <path d="M2 2 L12 11 L22 2" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
       </div>
     </section>
   )
