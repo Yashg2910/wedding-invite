@@ -19,7 +19,7 @@ function trapEase(t: number): number {
 // browser's native smooth-scroll is too quick for the cinematic transitions.
 // This is user-initiated navigation, so it animates even under reduced motion
 // (the decorative loops are what reduced-motion disables, not this).
-function smoothScrollTo(target: number, duration = 9000) {
+function smoothScrollTo(target: number, duration = 4500) {
   const start = window.scrollY || window.pageYOffset || 0
   const end = Math.max(0, Math.round(target))
   const dist = end - start
