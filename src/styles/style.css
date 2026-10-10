@@ -95,16 +95,21 @@
   /* Scroll hint: a bouncing down-chevron prompting the guest to scroll. Visible
      when a chapter first appears (--p low) and fades out as they scroll into it. */
   .scroll-hint {
-    position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 2.6svh);
+    position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 3.4svh);
     transform: translateX(-50%); pointer-events: none; z-index: 1;
-    display: flex; flex-direction: column; align-items: center; gap: 2px;
-    padding: 8px 16px 7px; border-radius: 999px; color: #ffe8c2;
-    background: rgba(16,7,20,.5); box-shadow: 0 2px 14px -4px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,220,160,.28);
-    opacity: clamp(0, calc(1 - var(--p, 0) * 9), 1);
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 12px 24px 10px; border-radius: 999px; color: #fff1d2;
+    background: rgba(12,5,16,.66);
+    opacity: clamp(0, calc(1 - var(--p, 0) * 7), 1);
+    animation: hintpulse 2s ease-in-out infinite;
   }
-  .scroll-hint .sh-label { font-family: var(--caps); font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; opacity: .9; }
-  .scroll-hint svg { display: block; width: 26px; height: auto; animation: scrollbob 1.5s ease-in-out infinite; }
-  @keyframes scrollbob { 0%, 100% { transform: translateY(-2px); opacity: .6; } 50% { transform: translateY(4px); opacity: 1; } }
+  .scroll-hint .sh-label { font-family: var(--caps); font-weight: 600; font-size: .74rem; letter-spacing: .28em; text-transform: uppercase; text-shadow: 0 1px 4px rgba(0,0,0,.7); }
+  .scroll-hint svg { display: block; width: 36px; height: auto; animation: scrollbob 1.3s ease-in-out infinite; }
+  @keyframes scrollbob { 0%, 100% { transform: translateY(-3px); opacity: .6; } 50% { transform: translateY(6px); opacity: 1; } }
+  @keyframes hintpulse {
+    0%, 100% { box-shadow: 0 4px 18px -4px rgba(0,0,0,.8), inset 0 0 0 1.5px rgba(255,216,138,.4), 0 0 0 0 rgba(255,200,110,0); }
+    50% { box-shadow: 0 4px 22px -4px rgba(0,0,0,.8), inset 0 0 0 1.5px rgba(255,216,138,.85), 0 0 26px 3px rgba(255,198,105,.45); }
+  }
   .title {
     font-family: var(--script); font-weight: 400; font-size: clamp(4.4rem, 21vw, 8rem); line-height: 1.12; margin: 0; padding: 0 .25em;
     color: var(--tc); text-shadow: var(--ts);

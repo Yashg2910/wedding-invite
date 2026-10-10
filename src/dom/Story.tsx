@@ -28,8 +28,9 @@ function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
         </div>
         <div className="scroll-hint" aria-hidden="true">
           <span className="sh-label">Scroll</span>
-          <svg viewBox="0 0 24 14" fill="none" aria-hidden="true">
-            <path d="M2 2 L12 11 L22 2" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          <svg viewBox="0 0 28 22" fill="none" aria-hidden="true">
+            <path d="M4 3 L14 12 L24 3" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M4 10 L14 19 L24 10" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" opacity="0.55" />
           </svg>
         </div>
       </div>
