@@ -135,7 +135,7 @@ export default function Scene({ beckonRef, flashRef, threadBeadRef }: Props) {
     const now = state.clock.elapsedTime
     time.value = now
     const dt = Math.min(0.05, Math.max(0, delta))
-    const kk = 1 - Math.exp(-dt * 11)
+    const kk = 1 - Math.exp(-dt * 7)
     gl.getDrawingBufferSize(res)
 
     const p = ptr.current
@@ -147,6 +147,12 @@ export default function Scene({ beckonRef, flashRef, threadBeadRef }: Props) {
     const P = particles.uniforms
     const cam = camPos.current
     const mode = useStore.getState().mode
+
+    // Derive group visibility from mode every frame so a mid-story rebuild
+    // (e.g. PerformanceMonitor lowering the tier) can't leave the gate showing
+    // behind the story.
+    gate.group.visible = mode !== 'story'
+    story.group.visible = mode === 'story'
 
     // Advance the opening timeline clock while entering and until the first
     // chapter has finished revealing (entryReveal runs past the gate->story flip).

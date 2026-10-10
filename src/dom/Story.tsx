@@ -2,9 +2,12 @@ import { useState } from 'react'
 import { CHAPTERS, OrnSVG } from './chapters'
 import ScratchCard from './ScratchCard'
 import Countdown from './Countdown'
+import HandSVG from './HandSVG'
 import { useStore } from '../state/store'
+import { goNextEvent } from './nav'
 
 function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
+  const isLast = data.ev === CHAPTERS.length - 1
   return (
     <section className="chapter" data-ev={data.ev} style={data.style}>
       <div className="pin">
@@ -16,22 +19,25 @@ function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
           </p>
           <p className="lede">{data.lede}</p>
         </header>
-        <div className="card">
-          <dl className="details">
-            <dt>Date</dt>
-            <dd>{data.date}</dd>
-            <dt>Time</dt>
-            <dd>{data.time}</dd>
-            <dt>Venue</dt>
-            <dd>{data.venue}</dd>
-          </dl>
-        </div>
-        <div className="scroll-hint" aria-hidden="true">
-          <span className="sh-label">Scroll</span>
-          <svg viewBox="0 0 28 22" fill="none" aria-hidden="true">
-            <path d="M4 3 L14 12 L24 3" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M4 10 L14 19 L24 10" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" opacity="0.55" />
-          </svg>
+        <div className="pin-bottom">
+          <div className="card">
+            <dl className="details">
+              <dt>Date</dt>
+              <dd>{data.date}</dd>
+              <dt>Time</dt>
+              <dd>{data.time}</dd>
+              <dt>Venue</dt>
+              <dd>{data.venue}</dd>
+            </dl>
+          </div>
+          <div className="next-cue">
+            <button className="next-btn" type="button" onClick={() => goNextEvent(data.ev)}>
+              {isLast ? 'Save the dates' : 'Next event'} <span className="arr" aria-hidden="true">↓</span>
+            </button>
+            <div className="next-hand" aria-hidden="true">
+              <HandSVG />
+            </div>
+          </div>
         </div>
       </div>
     </section>
