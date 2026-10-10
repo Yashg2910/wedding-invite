@@ -6,6 +6,7 @@ import { D } from './three/events'
 import { qualityFor } from './three/quality'
 import { useStore, type Tier } from './state/store'
 import { useScrollDriver } from './dom/useScrollDriver'
+import { scrollToSlot } from './dom/nav'
 import { hasPreview } from './dom/guestName'
 import GateOverlay from './dom/GateOverlay'
 import GuestPreview from './dom/GuestPreview'
@@ -42,6 +43,9 @@ export default function App() {
     if (mode === 'story') {
       document.documentElement.classList.remove('locked')
       window.scrollTo(0, 0)
+      // After the entry reveal settles, glide the first event's card + CTA into view.
+      const t = setTimeout(() => scrollToSlot(0), 1500)
+      return () => clearTimeout(t)
     }
   }, [mode])
 
