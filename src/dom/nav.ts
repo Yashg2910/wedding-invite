@@ -1,16 +1,19 @@
 import { shared } from '../state/store'
-import { easeIO, prefersReducedMotion } from '../util'
+import { easeIO } from '../util'
 
 let rafId = 0
 
-// Eased scroll with a controllable (deliberately unhurried) duration — the
+// Eased scroll with a deliberately unhurried, controllable duration — the
 // browser's native smooth-scroll is too quick for the cinematic transitions.
-function smoothScrollTo(target: number, duration = 2700) {
+// This is user-initiated navigation, so it animates even under reduced motion
+// (the decorative loops are what reduced-motion disables, not this).
+function smoothScrollTo(target: number, duration = 9000) {
   const start = window.scrollY || window.pageYOffset || 0
-  const dist = Math.max(0, Math.round(target)) - start
+  const end = Math.max(0, Math.round(target))
+  const dist = end - start
   cancelAnimationFrame(rafId)
-  if (Math.abs(dist) < 2 || prefersReducedMotion) {
-    window.scrollTo(0, Math.max(0, Math.round(target)))
+  if (Math.abs(dist) < 2) {
+    window.scrollTo(0, end)
     return
   }
   const t0 = performance.now()

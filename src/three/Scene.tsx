@@ -135,7 +135,7 @@ export default function Scene({ beckonRef, flashRef, threadBeadRef }: Props) {
     const now = state.clock.elapsedTime
     time.value = now
     const dt = Math.min(0.05, Math.max(0, delta))
-    const kk = 1 - Math.exp(-dt * 4)
+    const kk = 1 - Math.exp(-dt * 2.4)
     gl.getDrawingBufferSize(res)
 
     const p = ptr.current
