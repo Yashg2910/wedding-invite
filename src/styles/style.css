@@ -177,5 +177,8 @@
 
   @media (prefers-reduced-motion: reduce) {
     .hand svg, .ripple, .gold-text { animation: none !important; }
-    .gtext > * { animation-duration: .01ms !important; }
+    /* The couple name uses .gold-text + the "rise" fade-in; disabling its
+       animation above would otherwise leave it stuck at opacity:0. Force the
+       gate text visible. */
+    .gtext > * { animation-duration: .01ms !important; opacity: 1 !important; transform: none !important; }
   }
