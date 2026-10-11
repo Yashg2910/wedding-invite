@@ -2,7 +2,9 @@
     --ink: #f8e7c4; --page: #120a1c; --brass: #d4a445;
     --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
     --deva: "Amita", "Tiro Devanagari Hindi", "Kohinoor Devanagari", serif;
+    --deva-bold: "Tiro Devanagari Hindi", "Rozha One", "Kohinoor Devanagari", "Amita", serif;
     --script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
+    --display: "Rozha One", "Cinzel", "Cormorant Garamond", Georgia, serif;
     --caps: "Cinzel", "Trajan Pro", "Optima", serif;
     box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
@@ -20,6 +22,16 @@
   /* R3F canvas: fixed fullscreen behind the scrolling story, non-interactive. */
   .gl-canvas { position: fixed !important; inset: 0; width: 100vw !important; height: 100dvh !important; z-index: 0; pointer-events: none; }
   .gl-canvas canvas { display: block; }
+
+  /* Static top-contrast overlay (Step 1): a fixed dark gradient over the top 35%
+     of the viewport, above the 3D canvas (z:0) but below the story text (z:2)
+     and gate (z:10). Its opacity never animates, so background contrast behind
+     the event titles stays constant through every text transition. */
+  body::before {
+    content: ""; position: fixed; left: 0; right: 0; top: 0; height: 35svh; z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,.40) 0%, rgba(0,0,0,0) 100%);
+  }
 
   /* ---------- Gate overlay ---------- */
   .gate-ui { position: fixed; inset: 0; z-index: 10; transition: opacity .6s ease; }
@@ -128,16 +140,24 @@
     50% { box-shadow: 0 12px 28px -12px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.55), 0 0 22px 2px rgba(255,198,105,.5); }
   }
   .title {
-    font-family: var(--script); font-weight: 400; font-size: clamp(4.4rem, 21vw, 8rem); line-height: 1.12; margin: 0; padding: 0 .25em;
+    font-family: var(--display); font-weight: 400; font-size: clamp(4.2rem, 20vw, 7.6rem); line-height: 1.1; margin: 0; padding: 0 .25em;
     color: var(--tc); text-shadow: var(--ts);
-    -webkit-text-stroke: var(--title-stroke, 0); paint-order: stroke fill;
-    clip-path: inset(-.5em calc((1 - var(--tx, 0)) * 104%) -.6em -.4em);
-    transform: translateY(calc((1 - var(--tx, 0)) * 18px));
+    /* Staggered fade-in + 8px upward translate (Step 3) — no clip-path wipe. */
+    opacity: clamp(0, calc(var(--tx, 0) / 0.5), 1);
+    transform: translateY(calc((1 - clamp(0, calc(var(--tx, 0) / 0.5), 1)) * 8px));
+    transition: opacity .5s ease-out, transform .5s ease-out;
   }
-  .title.long { font-size: clamp(3.4rem, 15vw, 6.4rem); }
-  .orn { display: block; width: min(46%, 190px); height: auto; margin: -.1em auto .2em; overflow: visible; color: var(--tc); opacity: clamp(0, calc(var(--tx, 0) * 4 - 2.6), 1); }
-  .hi { font-family: var(--deva); font-size: clamp(1.35rem, 6.4vw, 2.2rem); margin: .25em 0 0; color: var(--tc); text-shadow: var(--ts); opacity: clamp(0, calc(var(--tx, 0) * 5 - 3.4), 1); }
-  .lede { font-size: clamp(1.2rem, 5vw, 1.5rem); font-style: italic; font-weight: 500; line-height: 1.4; max-width: 28ch; margin: .6rem auto 0; color: var(--tc); text-shadow: var(--ts); opacity: clamp(0, calc(var(--tx, 0) * 5 - 3.9), 1); }
+  .title.long { font-size: clamp(3.2rem, 14vw, 6rem); }
+  .orn { display: block; width: min(46%, 190px); height: auto; margin: .05em auto .25em; overflow: visible; color: var(--tc);
+    opacity: clamp(0, calc((var(--tx, 0) - 0.15) / 0.5), 1); transition: opacity .5s ease-out; }
+  .hi { font-family: var(--deva-bold); font-weight: 700; font-size: clamp(1.5rem, 7vw, 2.4rem); margin: .2em 0 0; color: var(--sub-tc, #FFFDF0); text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    opacity: clamp(0, calc((var(--tx, 0) - 0.3) / 0.5), 1);
+    transform: translateY(calc((1 - clamp(0, calc((var(--tx, 0) - 0.3) / 0.5), 1)) * 8px));
+    transition: opacity .5s ease-out, transform .5s ease-out; }
+  .lede { font-family: var(--serif); font-weight: 500; font-style: normal; font-size: clamp(1.15rem, 4.8vw, 1.45rem); line-height: 1.4; max-width: 28ch; margin: .55rem auto 0; color: var(--sub-tc, #FFFDF0); text-shadow: 0 2px 4px rgba(0,0,0,.5);
+    opacity: clamp(0, calc((var(--tx, 0) - 0.6) / 0.5), 1);
+    transform: translateY(calc((1 - clamp(0, calc((var(--tx, 0) - 0.6) / 0.5), 1)) * 8px));
+    transition: opacity .5s ease-out, transform .5s ease-out; }
   .card {
     pointer-events: auto; width: min(100%, 380px);
     background: linear-gradient(rgba(24,10,16,.8), rgba(18,6,12,.9));
@@ -145,13 +165,13 @@
     box-shadow: 0 24px 60px -20px rgba(0,0,0,.8), inset 0 0 0 4px rgba(212,164,69,.12);
     padding: 1.1rem 1.3rem 1.2rem; color: #f8e7c4;
     --c: clamp(0, calc(var(--p, 0) * 8 - .9), 1);
-    opacity: var(--c); transform: translateY(calc((1 - var(--c)) * 46px)) scale(calc(.96 + var(--c) * .04));
+    opacity: var(--c); transform: translateY(calc((1 - var(--c)) * 46px)) scale(calc(.98 + var(--c) * .02));
   }
   .details { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: .4rem 1.1rem; font-size: 1.15rem; text-align: left; }
-  .details dt { font-family: var(--caps); font-weight: 600; font-size: .82rem; letter-spacing: .14em; color: #ffd98a; align-self: center; }
+  .details dt { font-family: var(--caps); font-weight: 600; font-size: .82rem; letter-spacing: .14em; color: #E5C158; align-self: center; }
   .details dd { margin: 0; font-style: italic; font-size: 1.2rem; }
   .dress { margin: .9rem 0 0; font-size: 1.12rem; font-style: italic; padding-top: .8rem; border-top: 1px solid rgba(212,164,69,.3); }
-  .dress b { font-family: var(--caps); font-style: normal; font-size: .8rem; letter-spacing: .14em; color: #ffd98a; font-weight: 600; margin-right: .35em; }
+  .dress b { font-family: var(--caps); font-style: normal; font-size: .8rem; letter-spacing: .14em; color: #E5C158; font-weight: 600; margin-right: .35em; }
 
   .savedate { position: relative; min-height: 115svh; padding: 16svh 7% 12svh; display: flex; flex-direction: column; align-items: center; text-align: center; }
   .savedate h2 { font-family: var(--script); font-weight: 400; font-size: clamp(3.6rem, 16vw, 6.4rem); margin: 0; line-height: 1.15; padding: 0 .25em; }
