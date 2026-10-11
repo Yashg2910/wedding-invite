@@ -11,9 +11,14 @@ let instance: any = null
 let started = false
 const queue: Array<[string, Params | undefined]> = []
 
+// Analytics only runs on the real invite domain — never on localhost, Vercel
+// preview URLs (*.vercel.app), or any other host. Hardcoded on purpose.
+const ANALYTICS_HOST = 'invite.ishayash.life'
+
 export async function initAnalytics(userProps?: Params, userId?: string) {
   if (started) return
   started = true
+  if (typeof location === 'undefined' || location.hostname !== ANALYTICS_HOST) return
   if (!firebaseConfig.measurementId || !firebaseConfig.apiKey) return
   try {
     const [{ initializeApp }, am] = await Promise.all([
