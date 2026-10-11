@@ -21,6 +21,16 @@
   .gl-canvas { position: fixed !important; inset: 0; width: 100vw !important; height: 100dvh !important; z-index: 0; pointer-events: none; }
   .gl-canvas canvas { display: block; }
 
+  /* Static top-contrast overlay (Step 1): a fixed dark gradient over the top 35%
+     of the viewport, above the 3D canvas (z:0) but below the story text (z:2)
+     and gate (z:10). Its opacity never animates — a light constant base; the
+     per-chapter .pin::before gradient adds the rest and fades with the text. */
+  body::before {
+    content: ""; position: fixed; left: 0; right: 0; top: 0; height: 35svh; z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,.22) 0%, rgba(0,0,0,0) 100%);
+  }
+
   /* ---------- Gate overlay ---------- */
   .gate-ui { position: fixed; inset: 0; z-index: 10; transition: opacity .6s ease; }
   .gate-ui.gone { opacity: 0; pointer-events: none; }
@@ -93,9 +103,18 @@
   .pin > header { transform: translateY(var(--head-shift, 0)); }
   .subhead { transform: translateY(var(--sub-shift, 0)); }
 
-  /* No top/bottom scrim overlays: the fixed-height gradient boxes read as a
-     horizontal "gradient line" over flatter backgrounds. Legibility is carried
-     by the titles' own text-shadows and the card's solid background instead. */
+  /* Per-chapter top-contrast gradient. Unlike the global static overlay, this
+     one lives inside the sticky .pin and its opacity tracks --tx — the same
+     progress that drives the title — so it fades IN as the event's text rises
+     in and fades OUT as the chapter scrolls away. Kept tall and soft (fading to
+     transparent at 55% height) so it never reads as a hard "gradient line". */
+  .pin::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 55%;
+    pointer-events: none; z-index: -1;
+    background: linear-gradient(to bottom, rgba(0,0,0,.45) 0%, rgba(0,0,0,.18) 45%, rgba(0,0,0,0) 100%);
+    opacity: clamp(0, calc(var(--tx, 0) / 0.5), 1);
+    transition: opacity .5s ease-out;
+  }
 
   /* Bottom group: event card + the "Next event" call-to-action with a pointing hand. */
   .pin-bottom { display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%; }
@@ -131,13 +150,22 @@
     font-family: var(--script); font-weight: 400; font-size: clamp(4.4rem, 21vw, 8rem); line-height: 1.12; margin: 0; padding: 0 .25em;
     color: var(--tc); text-shadow: var(--ts);
     -webkit-text-stroke: var(--title-stroke, 0); paint-order: stroke fill;
-    clip-path: inset(-.5em calc((1 - var(--tx, 0)) * 104%) -.6em -.4em);
-    transform: translateY(calc((1 - var(--tx, 0)) * 18px));
+    /* Staggered fade-in + 8px upward translate (Step 3) — no clip-path wipe. */
+    opacity: clamp(0, calc(var(--tx, 0) / 0.5), 1);
+    transform: translateY(calc((1 - clamp(0, calc(var(--tx, 0) / 0.5), 1)) * 8px));
+    transition: opacity .5s ease-out, transform .5s ease-out;
   }
   .title.long { font-size: clamp(3.4rem, 15vw, 6.4rem); }
-  .orn { display: block; width: min(46%, 190px); height: auto; margin: -.1em auto .2em; overflow: visible; color: var(--tc); opacity: clamp(0, calc(var(--tx, 0) * 4 - 2.6), 1); }
-  .hi { font-family: var(--deva); font-size: clamp(1.35rem, 6.4vw, 2.2rem); margin: .25em 0 0; color: var(--tc); text-shadow: var(--ts); opacity: clamp(0, calc(var(--tx, 0) * 5 - 3.4), 1); }
-  .lede { font-size: clamp(1.2rem, 5vw, 1.5rem); font-style: italic; font-weight: 500; line-height: 1.4; max-width: 28ch; margin: .6rem auto 0; color: var(--tc); text-shadow: var(--ts); opacity: clamp(0, calc(var(--tx, 0) * 5 - 3.9), 1); }
+  .orn { display: block; width: min(46%, 190px); height: auto; margin: -.1em auto .2em; overflow: visible; color: var(--tc);
+    opacity: clamp(0, calc((var(--tx, 0) - 0.15) / 0.5), 1); transition: opacity .5s ease-out; }
+  .hi { font-family: var(--deva); font-size: clamp(1.35rem, 6.4vw, 2.2rem); margin: .25em 0 0; color: var(--tc); text-shadow: var(--ts);
+    opacity: clamp(0, calc((var(--tx, 0) - 0.3) / 0.5), 1);
+    transform: translateY(calc((1 - clamp(0, calc((var(--tx, 0) - 0.3) / 0.5), 1)) * 8px));
+    transition: opacity .5s ease-out, transform .5s ease-out; }
+  .lede { font-size: clamp(1.2rem, 5vw, 1.5rem); font-style: italic; font-weight: 500; line-height: 1.4; max-width: 28ch; margin: .6rem auto 0; color: var(--tc); text-shadow: var(--ts);
+    opacity: clamp(0, calc((var(--tx, 0) - 0.6) / 0.5), 1);
+    transform: translateY(calc((1 - clamp(0, calc((var(--tx, 0) - 0.6) / 0.5), 1)) * 8px));
+    transition: opacity .5s ease-out, transform .5s ease-out; }
   .card {
     pointer-events: auto; width: min(100%, 380px);
     background: linear-gradient(rgba(24,10,16,.8), rgba(18,6,12,.9));
