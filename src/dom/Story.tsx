@@ -1,13 +1,15 @@
+import { useEffect } from 'react'
 import { CHAPTERS, OrnSVG } from './chapters'
 import ScratchCard from './ScratchCard'
 import Countdown from './Countdown'
 import HandSVG from './HandSVG'
 import { useStore } from '../state/store'
 import { goNextEvent } from './nav'
+import { track } from '../analytics'
 
 function Chapter({ data, index, isLast }: { data: (typeof CHAPTERS)[number]; index: number; isLast: boolean }) {
   return (
-    <section className="chapter" data-ev={index} style={data.style}>
+    <section className="chapter" data-ev={index} data-key={data.key} style={data.style}>
       <div className="pin">
         <header>
           <h2 className={'title' + (data.long ? ' long' : '')}>{data.title}</h2>
@@ -45,6 +47,7 @@ function Chapter({ data, index, isLast }: { data: (typeof CHAPTERS)[number]; ind
                   ],
                   { duration: 340, easing: 'ease-out' },
                 )
+                track('next_event', { from: data.key, index, last: isLast })
                 goNextEvent(index)
               }}
             >
@@ -63,13 +66,34 @@ function Chapter({ data, index, isLast }: { data: (typeof CHAPTERS)[number]; ind
 export default function Story() {
   const mode = useStore((s) => s.mode)
 
+  // Fire one event_view per screen the first time it comes into view.
+  useEffect(() => {
+    if (mode !== 'story') return
+    const seen = new Set<string>()
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting || e.intersectionRatio < 0.5) continue
+          const k = (e.target as HTMLElement).dataset.key || 'savedate'
+          if (!seen.has(k)) {
+            seen.add(k)
+            track('event_view', { event: k })
+          }
+        }
+      },
+      { threshold: [0.5] },
+    )
+    document.querySelectorAll('.chapter, .savedate').forEach((el) => io.observe(el))
+    return () => io.disconnect()
+  }, [mode])
+
   return (
     <main className={'story' + (mode === 'story' ? ' on' : '')}>
       {CHAPTERS.map((c, i) => (
         <Chapter key={c.ev} data={c} index={i} isLast={i === CHAPTERS.length - 1} />
       ))}
 
-      <section className="savedate">
+      <section className="savedate" data-key="savedate">
         <Countdown live />
         <p className="sample">Counting down to the celebrations in Indore.</p>
         <p className="lede">Scratch the gold card to reveal the dates.</p>
@@ -89,10 +113,16 @@ export default function Story() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open Hotel The Chandra Leela (TCL), Indore in Google Maps"
+              onClick={() => track('map_open', { source: 'map' })}
             />
             <div className="map-top">
               <b>Hotel The Chandra Leela (TCL)</b>
-              <a href="https://maps.app.goo.gl/99nxBbFuwnzsH4gd8" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://maps.app.goo.gl/99nxBbFuwnzsH4gd8"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track('map_open', { source: 'link' })}
+              >
                 View larger map ↗
               </a>
             </div>

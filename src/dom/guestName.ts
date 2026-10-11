@@ -33,6 +33,7 @@ const params = new URLSearchParams(location.search)
 
 export const urlStyle = params.get('style')
 export const hasPreview = params.has('preview')
+export const hasGuest = !!params.get('to')
 export const initialGreeting = greeting(cleanName(params.get('to')), urlStyle)
 export const hostLine = CONFIG.hostFamily
   ? 'The ' + CONFIG.hostFamily + ' family welcomes you to the wedding of'

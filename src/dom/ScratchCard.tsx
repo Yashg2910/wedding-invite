@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { DATE_ROWS } from './chapters'
+import { track } from '../analytics'
 
 // Ported from the scratch-card half of initExtras (app.js:565-609).
 // Perf: the 2D context is created with willReadFrequently, and the full-canvas
@@ -77,6 +78,7 @@ export default function ScratchCard({ onReveal }: { onReveal: () => void }) {
     function reveal() {
       if (revealed) return
       revealed = true
+      track('dates_revealed')
       canvas.classList.add('done')
       const host = hostRef.current!
       const cols = ['#ffd24a', '#ff8a1c', '#f7c6d0', '#ffffff', '#d4a445']

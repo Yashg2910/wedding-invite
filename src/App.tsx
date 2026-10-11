@@ -7,7 +7,9 @@ import { qualityFor } from './three/quality'
 import { useStore, type Tier } from './state/store'
 import { useScrollDriver } from './dom/useScrollDriver'
 import { scrollToSlot } from './dom/nav'
-import { hasPreview } from './dom/guestName'
+import { hasPreview, hasGuest, urlStyle } from './dom/guestName'
+import { category } from './category'
+import { initAnalytics, track } from './analytics'
 import GateOverlay from './dom/GateOverlay'
 import GuestPreview from './dom/GuestPreview'
 import Story from './dom/Story'
@@ -39,6 +41,12 @@ export default function App() {
   const threadBeadRef = useRef<HTMLElement>(null)
 
   useScrollDriver(mode)
+
+  // Analytics: fire once on load with who/which-invite context.
+  useEffect(() => {
+    initAnalytics({ invite_category: category, has_guest: hasGuest, style: urlStyle ?? 'default' })
+    track('invite_open', { invite_category: category, has_guest: hasGuest })
+  }, [])
 
   useEffect(() => {
     if (mode === 'story') {

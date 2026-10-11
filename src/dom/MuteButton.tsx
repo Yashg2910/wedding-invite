@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { toggleMuted } from './music'
+import { track } from '../analytics'
 
 // Small floating control to mute/unmute the background music.
 export default function MuteButton() {
@@ -9,7 +10,11 @@ export default function MuteButton() {
       className="mute-btn"
       type="button"
       aria-label={muted ? 'Unmute music' : 'Mute music'}
-      onClick={() => setMuted(toggleMuted())}
+      onClick={() => {
+        const m = toggleMuted()
+        setMuted(m)
+        track('music_toggle', { muted: m })
+      }}
     >
       {muted ? (
         <svg viewBox="0 0 24 24" aria-hidden="true">

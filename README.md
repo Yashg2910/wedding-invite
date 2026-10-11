@@ -66,6 +66,30 @@ Netlify builds from the repo: build command `npm run build`, publish directory `
 If the final address isn't `invite.ishayash.life`, update the `og:image` URL in `index.html`
 so the WhatsApp preview image works.
 
+## Analytics (optional)
+
+Firebase Analytics is wired in but **off until configured** — the site works
+fine without it. To enable:
+
+1. Firebase console → create/open a project → add a **Web app** → copy the config.
+2. Put the values in `src/firebase-config.ts` (or as `VITE_FB_*` env vars in
+   Netlify / a `.env`). The key one is `measurementId` (`G-XXXXXXXXXX`).
+3. Redeploy. Events then show in Firebase → Analytics (and GA4).
+
+Events tracked (see `src/analytics.ts` + `track(...)` call sites):
+
+| Event | When | Params |
+|---|---|---|
+| `invite_open` | page load | `invite_category` (oneday/twoday), `has_guest` |
+| `gate_enter` | guest taps Enter | — |
+| `event_view` | each event screen scrolled into view | `event` (haldi/sangeet/phere/reception/savedate) |
+| `next_event` | taps the Next-event CTA | `from`, `index`, `last` |
+| `dates_revealed` | scratch card revealed | — |
+| `map_open` | opens the venue map | `source` (map/link) |
+| `music_toggle` | mute/unmute | `muted` |
+
+User property `invite_category` is set so you can segment one-day vs two-day guests.
+
 ## Before sending to guests
 
 - Replace every "to be added" in `src/dom/chapters.tsx` and the sample `weddingDate` in `src/config.ts`.
