@@ -27,9 +27,10 @@ const ALL_CHAPTERS: ChapterData[] = [
     time: '11:30 AM',
     venue: VENUE,
     style: {
-      ['--tc' as string]: '#5A0010',
-      ['--sub-tc' as string]: '#FFFDF0',
-      ['--ts' as string]: '0 2px 4px rgba(0,0,0,.5)',
+      ['--tc' as string]: '#fff3d4',
+      ['--title-stroke' as string]: '1.3px #3a1400',
+      ['--ts' as string]:
+        '0 0 7px #ffe08c, 0 0 16px #ffae2e, 0 0 32px #ff8a1c, 0 0 56px #ff7a12, 0 0 10px rgba(45,16,0,.6)',
       ['--scrim-top' as string]: 'rgba(255,244,210,.55)',
       ['--sub-shift' as string]: '-8svh',
     },
@@ -44,9 +45,8 @@ const ALL_CHAPTERS: ChapterData[] = [
     time: '8:00 PM onwards',
     venue: VENUE,
     style: {
-      ['--tc' as string]: '#C81E8A',
-      ['--sub-tc' as string]: '#FFFDF0',
-      ['--ts' as string]: '0 2px 4px rgba(0,0,0,.5)',
+      ['--tc' as string]: '#fff',
+      ['--ts' as string]: '0 0 6px #ff8fe0, 0 0 20px #ff3fb4, 0 0 44px #a83cff',
       ['--scrim-top' as string]: 'rgba(12,8,40,.65)',
       ['--head-shift' as string]: '13svh',
     },
@@ -62,9 +62,10 @@ const ALL_CHAPTERS: ChapterData[] = [
     time: '1:00 PM onwards',
     venue: VENUE,
     style: {
-      ['--tc' as string]: '#800020',
-      ['--sub-tc' as string]: '#FFFDF0',
-      ['--ts' as string]: '0 2px 4px rgba(0,0,0,.5)',
+      ['--tc' as string]: '#fff0e6',
+      ['--title-stroke' as string]: '1.3px #3a0a06',
+      ['--ts' as string]:
+        '0 0 7px #ffcdb6, 0 0 16px #ff8a5a, 0 0 32px #ff5a2e, 0 0 56px #ff4418, 0 0 10px rgba(45,10,4,.6)',
       ['--scrim-top' as string]: 'rgba(255,246,240,.6)',
     },
   },
@@ -78,9 +79,9 @@ const ALL_CHAPTERS: ChapterData[] = [
     time: '8:00 PM onwards',
     venue: VENUE,
     style: {
-      ['--tc' as string]: '#9E1B32',
-      ['--sub-tc' as string]: '#FFFDF0',
-      ['--ts' as string]: '0 2px 4px rgba(0,0,0,.5)',
+      ['--tc' as string]: '#ffe3a0',
+      ['--ts' as string]:
+        '0 0 2px rgba(60,22,0,.95), 0 1px 2px rgba(45,15,0,.8), 0 0 6px #fff3c8, 0 0 22px #ffd36b, 0 0 48px #ffae3a',
       ['--scrim-top' as string]: 'rgba(20,10,30,.6)',
       ['--sub-shift' as string]: '15svh',
     },
