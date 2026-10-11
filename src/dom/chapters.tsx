@@ -70,7 +70,8 @@ export const CHAPTERS: ChapterData[] = [
     venue: VENUE,
     style: {
       ['--tc' as string]: '#ffe3a0',
-      ['--ts' as string]: '0 0 6px #fff3c8, 0 0 22px #ffd36b, 0 0 48px #ffae3a',
+      ['--ts' as string]:
+        '0 0 2px rgba(60,22,0,.95), 0 1px 2px rgba(45,15,0,.8), 0 0 6px #fff3c8, 0 0 22px #ffd36b, 0 0 48px #ffae3a',
       ['--scrim-top' as string]: 'rgba(20,10,30,.6)',
       ['--sub-shift' as string]: '15svh',
     },
