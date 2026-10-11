@@ -1,7 +1,9 @@
 import type { CSSProperties } from 'react'
+import { isEventActive } from '../category'
 
 export interface ChapterData {
   ev: number
+  key: string
   title: string
   long?: boolean
   hi: string
@@ -14,9 +16,10 @@ export interface ChapterData {
 
 const VENUE = 'TCL, Bypass, Indore'
 
-export const CHAPTERS: ChapterData[] = [
+const ALL_CHAPTERS: ChapterData[] = [
   {
     ev: 0,
+    key: 'haldi',
     title: 'Haldi',
     hi: 'हल्दी',
     lede: 'Turmeric, marigolds and a lot of laughter to begin the celebrations.',
@@ -34,6 +37,7 @@ export const CHAPTERS: ChapterData[] = [
   },
   {
     ev: 1,
+    key: 'sangeet',
     title: 'Sangeet',
     hi: 'संगीत',
     lede: 'An evening of music, dhol and dancing under the lights.',
@@ -49,6 +53,7 @@ export const CHAPTERS: ChapterData[] = [
   },
   {
     ev: 2,
+    key: 'phere',
     title: 'Baraat & Phere',
     long: true,
     hi: 'बारात और फेरे',
@@ -66,6 +71,7 @@ export const CHAPTERS: ChapterData[] = [
   },
   {
     ev: 3,
+    key: 'reception',
     title: 'Reception',
     hi: 'स्वागत समारोह',
     lede: 'Dinner, blessings and a night to celebrate together.',
@@ -82,12 +88,16 @@ export const CHAPTERS: ChapterData[] = [
   },
 ]
 
-export const DATE_ROWS = [
-  { label: 'Haldi', value: '10 December · 11:30 AM' },
-  { label: 'Sangeet', value: '10 December · 8:00 PM' },
-  { label: 'Baraat & Phere', value: '11 December · 1:00 PM' },
-  { label: 'Reception', value: '11 December · 8:00 PM' },
+// Only the events active for the current invite category (see src/category.ts).
+export const CHAPTERS: ChapterData[] = ALL_CHAPTERS.filter((c) => isEventActive(c.key))
+
+const ALL_DATE_ROWS = [
+  { key: 'haldi', label: 'Haldi', value: '10 December · 11:30 AM' },
+  { key: 'sangeet', label: 'Sangeet', value: '10 December · 8:00 PM' },
+  { key: 'phere', label: 'Baraat & Phere', value: '11 December · 1:00 PM' },
+  { key: 'reception', label: 'Reception', value: '11 December · 8:00 PM' },
 ]
+export const DATE_ROWS = ALL_DATE_ROWS.filter((d) => isEventActive(d.key))
 
 export function OrnSVG() {
   return (

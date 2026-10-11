@@ -2,6 +2,13 @@
   command = "npm run build"
   publish = "dist"
 
+# SPA fallback: category-coded paths like /td/ and /od/ serve the app.
+# Existing static files (e.g. /assets/*) take precedence over this rule.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [[headers]]
   for = "/assets/*"
   [headers.values]

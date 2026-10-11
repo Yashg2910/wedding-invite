@@ -16,6 +16,7 @@ interface ExtraUserData {
 }
 
 export interface StoryEvent {
+  key: string
   group: THREE.Group
   u: { reveal: { value: number }; dim: { value: number }; fade: { value: number } }
   bg: THREE.Mesh
@@ -80,44 +81,56 @@ export function buildStory(
     const fg = layer(asset(ev.key + '_fg'), true, 24)
     g.add(bg, fg)
 
-    return { group: g, u, bg, fg, extras: [], W: 1, H: 1, aspect: ev.aspect }
+    return { key: ev.key, group: g, u, bg, fg, extras: [], W: 1, H: 1, aspect: ev.aspect }
   })
+
+  const byKey: Record<string, StoryEvent> = {}
+  events.forEach((e) => (byKey[e.key] = e))
+
+  const addExtra = (se: StoryEvent, m: THREE.Mesh) => {
+    se.group.add(m)
+    se.extras.push(m)
+  }
 
   if (extrasEnabled) {
     // Sangeet: sweeping stage beams between backdrop and couple.
-    const beamMat = (col: string) =>
-      mat({
-        blending: THREE.AdditiveBlending,
-        uniforms: { uColor: { value: new THREE.Color(col) }, uI: { value: 0 } },
-        vertexShader: BASIC_VS,
-        fragmentShader: BEAM_FS,
+    if (byKey['sangeet']) {
+      const se = byKey['sangeet']
+      const beamMat = (col: string) =>
+        mat({
+          blending: THREE.AdditiveBlending,
+          uniforms: { uColor: { value: new THREE.Color(col) }, uI: { value: 0 } },
+          vertexShader: BASIC_VS,
+          fragmentShader: BEAM_FS,
+        })
+      ;[
+        [0.04, 0.82, '#ff6fd8', -0.35],
+        [0.2, 0.81, '#ff9ae8', -0.15],
+        [0.8, 0.81, '#7fdcff', 0.15],
+        [0.96, 0.82, '#ffe39a', 0.35],
+      ].forEach((b, k) => {
+        const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1).translate(0, -0.5, 0), beamMat(b[2] as string))
+        m.renderOrder = 1 * 10 + 1
+        m.userData = { u: b[0], v: b[1], base: b[3], ph: k * 1.7, kind: 'beam' } as ExtraUserData
+        addExtra(se, m)
       })
-    ;[
-      [0.04, 0.82, '#ff6fd8', -0.35],
-      [0.2, 0.81, '#ff9ae8', -0.15],
-      [0.8, 0.81, '#7fdcff', 0.15],
-      [0.96, 0.82, '#ffe39a', 0.35],
-    ].forEach((b, k) => {
-      const m = new THREE.Mesh(new THREE.PlaneGeometry(1, 1).translate(0, -0.5, 0), beamMat(b[2] as string))
-      m.renderOrder = 1 * 10 + 1
-      m.userData = { u: b[0], v: b[1], base: b[3], ph: k * 1.7, kind: 'beam' } as ExtraUserData
-      events[1].group.add(m)
-      events[1].extras.push(m)
-    })
+    }
 
     // Phere: firelight from the havan kund.
-    {
+    if (byKey['phere']) {
+      const se = byKey['phere']
       const f1 = glowSprite('#ff9a3c', 1.6, time)
       const f2 = glowSprite('#ffd27a', 2.2, time)
       f1.renderOrder = f2.renderOrder = 2 * 10 + 4
       f1.userData = { u: 0.509, v: 0.27, s: 0.5, kind: 'glow', I: 0.95 } as ExtraUserData
       f2.userData = { u: 0.509, v: 0.255, s: 0.22, kind: 'glow', I: 1 } as ExtraUserData
-      events[2].group.add(f1, f2)
-      events[2].extras.push(f1, f2)
+      addExtra(se, f1)
+      addExtra(se, f2)
     }
 
     // Reception: chandeliers catching the light.
-    {
+    if (byKey['reception']) {
+      const se = byKey['reception']
       ;[
         [0.505, 0.9, 0.28],
         [0.44, 0.88, 0.12],
@@ -129,23 +142,20 @@ export function buildStory(
         const s = starSprite('#fff4d6', time)
         s.renderOrder = 3 * 10 + 4
         s.userData = { u: p[0], v: p[1], s: p[2], kind: 'star', I: 1 } as ExtraUserData
-        events[3].group.add(s)
-        events[3].extras.push(s)
+        addExtra(se, s)
       })
       const halo = glowSprite('#ffd98a', 0.3, time)
       halo.renderOrder = 3 * 10 + 1
       halo.userData = { u: 0.505, v: 0.9, s: 0.7, kind: 'glow', I: 0.55 } as ExtraUserData
-      events[3].group.add(halo)
-      events[3].extras.push(halo)
+      addExtra(se, halo)
     }
 
     // Haldi: warm sunlight bloom.
-    {
+    if (byKey['haldi']) {
       const sun = glowSprite('#fff1b0', 0.2, time)
       sun.renderOrder = 1
       sun.userData = { u: 0.5, v: 0.78, s: 1.1, kind: 'glow', I: 0.45 } as ExtraUserData
-      events[0].group.add(sun)
-      events[0].extras.push(sun)
+      addExtra(byKey['haldi'], sun)
     }
   }
 

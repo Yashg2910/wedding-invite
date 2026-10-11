@@ -5,10 +5,9 @@ import HandSVG from './HandSVG'
 import { useStore } from '../state/store'
 import { goNextEvent } from './nav'
 
-function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
-  const isLast = data.ev === CHAPTERS.length - 1
+function Chapter({ data, index, isLast }: { data: (typeof CHAPTERS)[number]; index: number; isLast: boolean }) {
   return (
-    <section className="chapter" data-ev={data.ev} style={data.style}>
+    <section className="chapter" data-ev={index} style={data.style}>
       <div className="pin">
         <header>
           <h2 className={'title' + (data.long ? ' long' : '')}>{data.title}</h2>
@@ -46,7 +45,7 @@ function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
                   ],
                   { duration: 340, easing: 'ease-out' },
                 )
-                goNextEvent(data.ev)
+                goNextEvent(index)
               }}
             >
               {isLast ? 'Save the dates' : 'Next event'} <span className="arr" aria-hidden="true">↓</span>
@@ -66,8 +65,8 @@ export default function Story() {
 
   return (
     <main className={'story' + (mode === 'story' ? ' on' : '')}>
-      {CHAPTERS.map((c) => (
-        <Chapter key={c.ev} data={c} />
+      {CHAPTERS.map((c, i) => (
+        <Chapter key={c.ev} data={c} index={i} isLast={i === CHAPTERS.length - 1} />
       ))}
 
       <section className="savedate">

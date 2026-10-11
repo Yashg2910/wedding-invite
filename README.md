@@ -49,6 +49,17 @@ The original vanilla build is kept under `legacy/` for reference.
 Add `&style=friend` for "Dear Rohan". No `to` shows "Dear Family & Friends".
 Generate links from a spreadsheet rather than typing them.
 
+### Invite categories (which events a guest sees)
+
+A short path code controls the event set (see `src/category.ts`):
+
+| Link | Events shown |
+|---|---|
+| `https://<your-site>/?to=…` or `/td/?to=…` | **Two-day** — all events (Haldi, Sangeet, Baraat & Phere, Reception). Default. |
+| `https://<your-site>/od/?to=…` | **One-day** — day-2 only (Baraat & Phere, Reception); Haldi & Sangeet are hidden. |
+
+The code sits in the path (`/td/`, `/od/`) so it reads as a normal link, not an obvious category flag. Everything else (greeting, transitions, scratch dates, map) adapts automatically.
+
 ## Deploy
 
 Netlify builds from the repo: build command `npm run build`, publish directory `dist` (already set in `netlify.toml`). Connect the repo in Netlify and it deploys on push.

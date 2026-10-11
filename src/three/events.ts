@@ -1,5 +1,6 @@
 // Per-event art direction — ported verbatim from the old js/app.js `EV` array.
 import { size } from '../config'
+import { isEventActive } from '../category'
 
 export interface EventDef {
   key: string
@@ -27,7 +28,7 @@ const RAW = [
 export const EV: EventDef[] = RAW.map((e) => {
   const [w, h] = size(e.key)
   return { ...e, cols: [...e.cols] as [string, string, string], focus: [...e.focus] as [number, number], aspect: w / h }
-})
+}).filter((e) => isEventActive(e.key))
 
 export const GATE = {
   clear: '#120a1c',
