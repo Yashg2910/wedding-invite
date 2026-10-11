@@ -34,6 +34,8 @@ const params = new URLSearchParams(location.search)
 export const urlStyle = params.get('style')
 export const hasPreview = params.has('preview')
 export const hasGuest = !!params.get('to')
+export const guestName = cleanName(params.get('to')) // e.g. "Manoj Gupta"
+export const guestSlug = (params.get('to') || '').trim() // raw ?to value, stable id
 export const initialGreeting = greeting(cleanName(params.get('to')), urlStyle)
 export const hostLine = CONFIG.hostFamily
   ? 'The ' + CONFIG.hostFamily + ' family welcomes you to the wedding of'

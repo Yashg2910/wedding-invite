@@ -11,7 +11,7 @@ let instance: any = null
 let started = false
 const queue: Array<[string, Params | undefined]> = []
 
-export async function initAnalytics(userProps?: Params) {
+export async function initAnalytics(userProps?: Params, userId?: string) {
   if (started) return
   started = true
   if (!firebaseConfig.measurementId || !firebaseConfig.apiKey) return
@@ -24,6 +24,7 @@ export async function initAnalytics(userProps?: Params) {
     const app = initializeApp(firebaseConfig)
     instance = am.getAnalytics(app)
     log = am.logEvent as any
+    if (userId) am.setUserId(instance, userId)
     if (userProps) am.setUserProperties(instance, userProps as any)
     for (const [e, p] of queue.splice(0)) log!(instance, e, p)
   } catch {

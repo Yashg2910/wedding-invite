@@ -7,7 +7,7 @@ import { qualityFor } from './three/quality'
 import { useStore, type Tier } from './state/store'
 import { useScrollDriver } from './dom/useScrollDriver'
 import { scrollToSlot } from './dom/nav'
-import { hasPreview, hasGuest, urlStyle } from './dom/guestName'
+import { hasPreview, hasGuest, urlStyle, guestSlug } from './dom/guestName'
 import { category } from './category'
 import { initAnalytics, track } from './analytics'
 import GateOverlay from './dom/GateOverlay'
@@ -44,8 +44,20 @@ export default function App() {
 
   // Analytics: fire once on load with who/which-invite context.
   useEffect(() => {
-    initAnalytics({ invite_category: category, has_guest: hasGuest, style: urlStyle ?? 'default' })
-    track('invite_open', { invite_category: category, has_guest: hasGuest })
+    initAnalytics(
+      {
+        invite_category: category,
+        has_guest: hasGuest,
+        style: urlStyle ?? 'default',
+        guest_id: guestSlug || '(none)',
+      },
+      guestSlug || undefined,
+    )
+    track('invite_open', {
+      invite_category: category,
+      has_guest: hasGuest,
+      guest_id: guestSlug || '(none)',
+    })
   }, [])
 
   useEffect(() => {
