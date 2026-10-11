@@ -74,7 +74,8 @@ export default function ScratchCard({ onReveal }: { onReveal: () => void }) {
         total++
         if (data[k] < 40) clear++
       }
-      if (clear / total > 0.28) reveal()
+      // Reveal early: once ~8% of the foil is scratched away, uncover everything.
+      if (clear / total > 0.08) reveal()
     }
     function reveal() {
       if (revealed) return
