@@ -62,7 +62,7 @@ export default function ScratchCard({ onReveal }: { onReveal: () => void }) {
       ctx.lineTo(p.x, p.y)
       ctx.stroke()
       last = p
-      if (++moves % 8 === 0) check()
+      if (++moves % 4 === 0) check()
     }
     function check() {
       const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data
@@ -72,7 +72,7 @@ export default function ScratchCard({ onReveal }: { onReveal: () => void }) {
         total++
         if (data[k] < 40) clear++
       }
-      if (clear / total > 0.5) reveal()
+      if (clear / total > 0.28) reveal()
     }
     function reveal() {
       if (revealed) return
