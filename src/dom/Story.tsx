@@ -76,21 +76,28 @@ export default function Story() {
         <p className="lede">Scratch the gold card to reveal the dates.</p>
         <ScratchCard onReveal={() => {}} />
         <div className="map-card">
-          <iframe
-            className="map-embed"
-            title="Venue — Hotel The Chandra Leela (TCL), Indore"
-            src="https://maps.google.com/maps?q=22.7549305,75.9337149&z=16&output=embed"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-          <a
-            className="map-link"
-            href="https://maps.app.goo.gl/99nxBbFuwnzsH4gd8"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="map-pin" aria-hidden="true">📍</span> Hotel The Chandra Leela (TCL), Indore — View larger map
-          </a>
+          <div className="map-frame">
+            <iframe
+              className="map-embed"
+              title="Venue — Hotel The Chandra Leela (TCL), Indore"
+              src="https://maps.google.com/maps?q=22.7549305,75.9337149&z=16&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            <a
+              className="map-click"
+              href="https://maps.app.goo.gl/99nxBbFuwnzsH4gd8"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Hotel The Chandra Leela (TCL), Indore in Google Maps"
+            />
+            <div className="map-top">
+              <b>Hotel The Chandra Leela (TCL)</b>
+              <a href="https://maps.app.goo.gl/99nxBbFuwnzsH4gd8" target="_blank" rel="noopener noreferrer">
+                View larger map ↗
+              </a>
+            </div>
+          </div>
         </div>
       </section>
       <footer className="next">
