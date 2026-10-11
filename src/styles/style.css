@@ -23,12 +23,12 @@
 
   /* Static top-contrast overlay (Step 1): a fixed dark gradient over the top 35%
      of the viewport, above the 3D canvas (z:0) but below the story text (z:2)
-     and gate (z:10). Its opacity never animates, so background contrast behind
-     the event titles stays constant through every text transition. */
+     and gate (z:10). Its opacity never animates — a light constant base; the
+     per-chapter .pin::before gradient adds the rest and fades with the text. */
   body::before {
     content: ""; position: fixed; left: 0; right: 0; top: 0; height: 35svh; z-index: 1;
     pointer-events: none;
-    background: linear-gradient(to bottom, rgba(0,0,0,.40) 0%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,.22) 0%, rgba(0,0,0,0) 100%);
   }
 
   /* ---------- Gate overlay ---------- */
@@ -103,9 +103,18 @@
   .pin > header { transform: translateY(var(--head-shift, 0)); }
   .subhead { transform: translateY(var(--sub-shift, 0)); }
 
-  /* No top/bottom scrim overlays: the fixed-height gradient boxes read as a
-     horizontal "gradient line" over flatter backgrounds. Legibility is carried
-     by the titles' own text-shadows and the card's solid background instead. */
+  /* Per-chapter top-contrast gradient. Unlike the global static overlay, this
+     one lives inside the sticky .pin and its opacity tracks --tx — the same
+     progress that drives the title — so it fades IN as the event's text rises
+     in and fades OUT as the chapter scrolls away. Kept tall and soft (fading to
+     transparent at 55% height) so it never reads as a hard "gradient line". */
+  .pin::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 55%;
+    pointer-events: none; z-index: -1;
+    background: linear-gradient(to bottom, rgba(0,0,0,.45) 0%, rgba(0,0,0,.18) 45%, rgba(0,0,0,0) 100%);
+    opacity: clamp(0, calc(var(--tx, 0) / 0.5), 1);
+    transition: opacity .5s ease-out;
+  }
 
   /* Bottom group: event card + the "Next event" call-to-action with a pointing hand. */
   .pin-bottom { display: flex; flex-direction: column; align-items: center; gap: 1rem; width: 100%; }

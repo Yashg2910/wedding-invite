@@ -28,9 +28,9 @@ const ALL_CHAPTERS: ChapterData[] = [
     venue: VENUE,
     style: {
       ['--tc' as string]: '#fff3d4',
-      ['--title-stroke' as string]: '1.3px #3a1400',
+      ['--title-stroke' as string]: '1.3px #3a0404',
       ['--ts' as string]:
-        '0 0 7px #ffe08c, 0 0 16px #ffae2e, 0 0 32px #ff8a1c, 0 0 56px #ff7a12, 0 0 10px rgba(45,16,0,.6)',
+        '0 0 7px #ffb3a3, 0 0 16px #ff5a4e, 0 0 32px #ff2a1c, 0 0 56px #e01208, 0 0 10px rgba(45,4,4,.6)',
       ['--scrim-top' as string]: 'rgba(255,244,210,.55)',
       ['--sub-shift' as string]: '-8svh',
     },
