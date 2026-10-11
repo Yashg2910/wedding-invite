@@ -31,7 +31,23 @@ function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
             </dl>
           </div>
           <div className="next-cue">
-            <button className="next-btn" type="button" onClick={() => goNextEvent(data.ev)}>
+            <button
+              className="next-btn"
+              type="button"
+              onClick={(e) => {
+                // Explicit tap feedback: a quick press-pop + brightness flash.
+                e.currentTarget.animate(
+                  [
+                    { transform: 'scale(1)', filter: 'brightness(1)' },
+                    { transform: 'scale(.9)', filter: 'brightness(1.18)', offset: 0.35 },
+                    { transform: 'scale(1.05)', filter: 'brightness(1.1)', offset: 0.7 },
+                    { transform: 'scale(1)', filter: 'brightness(1)' },
+                  ],
+                  { duration: 340, easing: 'ease-out' },
+                )
+                goNextEvent(data.ev)
+              }}
+            >
               {isLast ? 'Save the dates' : 'Next event'} <span className="arr" aria-hidden="true">↓</span>
             </button>
             <div className="next-hand" aria-hidden="true">
