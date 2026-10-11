@@ -47,7 +47,7 @@ function Chapter({ data, index, isLast }: { data: (typeof CHAPTERS)[number]; ind
                   ],
                   { duration: 340, easing: 'ease-out' },
                 )
-                track('next_event', { from: data.key, index, last: isLast })
+                track(isLast ? 'save_dates_click' : 'next_event', { from: data.key, index })
                 goNextEvent(index)
               }}
             >

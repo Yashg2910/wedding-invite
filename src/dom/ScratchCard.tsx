@@ -15,6 +15,7 @@ export default function ScratchCard({ onReveal }: { onReveal: () => void }) {
     const ctx = canvas.getContext('2d', { willReadFrequently: true })!
     let revealed = false
     let drawing = false
+    let started = false
     let last: { x: number; y: number } | null = null
     let moves = 0
 
@@ -100,6 +101,10 @@ export default function ScratchCard({ onReveal }: { onReveal: () => void }) {
       if (revealed) return
       drawing = true
       last = null
+      if (!started) {
+        started = true
+        track('scratch_start')
+      }
       canvas.setPointerCapture(e.pointerId)
       scratchAt(pos(e))
     }
