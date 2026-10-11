@@ -28,9 +28,9 @@ const ALL_CHAPTERS: ChapterData[] = [
     venue: VENUE,
     style: {
       ['--tc' as string]: '#fff3d4',
-      ['--title-stroke' as string]: '1.3px #3a0404',
+      ['--title-stroke' as string]: '1.3px #2a0202',
       ['--ts' as string]:
-        '0 0 7px #ffb3a3, 0 0 16px #ff5a4e, 0 0 32px #ff2a1c, 0 0 56px #e01208, 0 0 10px rgba(45,4,4,.6)',
+        '0 0 6px #ff7a6a, 0 0 15px #e01208, 0 0 30px #b00000, 0 0 52px #8a0000, 0 0 10px rgba(30,2,2,.75)',
       ['--scrim-top' as string]: 'rgba(255,244,210,.55)',
       ['--sub-shift' as string]: '-8svh',
     },
@@ -63,9 +63,9 @@ const ALL_CHAPTERS: ChapterData[] = [
     venue: VENUE,
     style: {
       ['--tc' as string]: '#fff0e6',
-      ['--title-stroke' as string]: '1.3px #3a0a06',
+      ['--title-stroke' as string]: '1.3px #2a0604',
       ['--ts' as string]:
-        '0 0 7px #ffcdb6, 0 0 16px #ff8a5a, 0 0 32px #ff5a2e, 0 0 56px #ff4418, 0 0 10px rgba(45,10,4,.6)',
+        '0 0 6px #ff7a5a, 0 0 15px #d61a0c, 0 0 30px #a60800, 0 0 52px #800020, 0 0 10px rgba(30,6,4,.75)',
       ['--scrim-top' as string]: 'rgba(255,246,240,.6)',
     },
   },
@@ -79,9 +79,10 @@ const ALL_CHAPTERS: ChapterData[] = [
     time: '8:00 PM onwards',
     venue: VENUE,
     style: {
-      ['--tc' as string]: '#ffe3a0',
+      ['--tc' as string]: '#fff2e0',
+      ['--title-stroke' as string]: '1.3px #2a0010',
       ['--ts' as string]:
-        '0 0 2px rgba(60,22,0,.95), 0 1px 2px rgba(45,15,0,.8), 0 0 6px #fff3c8, 0 0 22px #ffd36b, 0 0 48px #ffae3a',
+        '0 0 6px #ff6a8a, 0 0 15px #c8102e, 0 0 30px #8a0020, 0 0 52px #5a0014, 0 0 10px rgba(25,0,10,.8)',
       ['--scrim-top' as string]: 'rgba(20,10,30,.6)',
       ['--sub-shift' as string]: '15svh',
     },
