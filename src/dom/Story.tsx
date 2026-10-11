@@ -14,10 +14,12 @@ function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
         <header>
           <h2 className={'title' + (data.long ? ' long' : '')}>{data.title}</h2>
           <OrnSVG />
-          <p className="hi" lang="hi">
-            {data.hi}
-          </p>
-          <p className="lede">{data.lede}</p>
+          <div className="subhead">
+            <p className="hi" lang="hi">
+              {data.hi}
+            </p>
+            <p className="lede">{data.lede}</p>
+          </div>
         </header>
         <div className="pin-bottom">
           <div className="card">

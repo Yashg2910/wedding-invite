@@ -25,8 +25,9 @@ export const CHAPTERS: ChapterData[] = [
     venue: VENUE,
     style: {
       ['--tc' as string]: '#5a1e0a',
-      ['--ts' as string]: '0 0 14px rgba(255,246,214,.95), 0 0 2px rgba(255,246,214,.9)',
+      ['--ts' as string]: '0 0 6px #fff1c0, 0 0 20px #ffae2e, 0 0 44px #ff7a1c',
       ['--scrim-top' as string]: 'rgba(255,244,210,.55)',
+      ['--sub-shift' as string]: '-8svh',
     },
   },
   {
@@ -41,6 +42,7 @@ export const CHAPTERS: ChapterData[] = [
       ['--tc' as string]: '#fff',
       ['--ts' as string]: '0 0 6px #ff8fe0, 0 0 20px #ff3fb4, 0 0 44px #a83cff',
       ['--scrim-top' as string]: 'rgba(12,8,40,.65)',
+      ['--head-shift' as string]: '13svh',
     },
   },
   {
@@ -54,7 +56,7 @@ export const CHAPTERS: ChapterData[] = [
     venue: VENUE,
     style: {
       ['--tc' as string]: '#5a1414',
-      ['--ts' as string]: '0 0 14px rgba(255,248,240,.95), 0 0 2px rgba(255,248,240,.9)',
+      ['--ts' as string]: '0 0 6px #ffe2d0, 0 0 20px #ff7a4a, 0 0 44px #ff4a1e',
       ['--scrim-top' as string]: 'rgba(255,246,240,.6)',
     },
   },
@@ -68,8 +70,9 @@ export const CHAPTERS: ChapterData[] = [
     venue: VENUE,
     style: {
       ['--tc' as string]: '#ffe3a0',
-      ['--ts' as string]: '0 0 18px rgba(255,190,90,.7), 0 2px 8px rgba(0,0,0,.7)',
+      ['--ts' as string]: '0 0 6px #fff3c8, 0 0 22px #ffd36b, 0 0 48px #ffae3a',
       ['--scrim-top' as string]: 'rgba(20,10,30,.6)',
+      ['--sub-shift' as string]: '15svh',
     },
   },
 ]

@@ -88,6 +88,11 @@
     padding: calc(env(safe-area-inset-top, 0px) + 7svh) 6% calc(env(safe-area-inset-bottom, 0px) + 4svh);
     opacity: clamp(0, calc(1 - var(--x, 0) * 2.2), 1);
   }
+  /* Per-event vertical nudges so the text clears the caricature faces.
+     --head-shift moves the whole header; --sub-shift moves only the Hindi + lede. */
+  .pin > header { transform: translateY(var(--head-shift, 0)); }
+  .subhead { transform: translateY(var(--sub-shift, 0)); }
+
   /* No top/bottom scrim overlays: the fixed-height gradient boxes read as a
      horizontal "gradient line" over flatter backgrounds. Legibility is carried
      by the titles' own text-shadows and the card's solid background instead. */
