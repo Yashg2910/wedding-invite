@@ -14,7 +14,7 @@ export interface ChapterData {
   style: CSSProperties
 }
 
-const VENUE = 'TCL, Bypass, Indore'
+const VENUE = 'The Chandra Leela (TCL), Indore'
 
 const ALL_CHAPTERS: ChapterData[] = [
   {
