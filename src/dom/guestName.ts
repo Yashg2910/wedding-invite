@@ -1,18 +1,25 @@
 // Guest-name handling — ported verbatim from the old js/app.js (lines 15-41).
 import { CONFIG } from '../config'
 
+// Connector words kept lowercase (and left un-capitalised) when titling a name.
+const CONNECTORS = new Set(['and', '&'])
+
 export function cleanName(raw: string | null): string {
   if (!raw) return ''
   let s = String(raw).replace(/[-_+]+/g, ' ')
   try {
-    s = s.replace(/[^\p{L}\p{M}\s.]/gu, '')
+    s = s.replace(/[^\p{L}\p{M}\s.&]/gu, '')
   } catch {
-    s = s.replace(/[^A-Za-z\s.]/g, '')
+    s = s.replace(/[^A-Za-z\s.&]/g, '')
   }
   s = s.replace(/\s+/g, ' ').trim().slice(0, 60)
   return s
     .split(' ')
-    .map((w) => (w ? w.charAt(0).toLocaleUpperCase() + w.slice(1) : ''))
+    .map((w) => {
+      if (!w) return ''
+      if (CONNECTORS.has(w.toLocaleLowerCase())) return w.toLocaleLowerCase()
+      return w.charAt(0).toLocaleUpperCase() + w.slice(1)
+    })
     .join(' ')
 }
 
