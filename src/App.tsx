@@ -43,8 +43,8 @@ export default function App() {
     if (mode === 'story') {
       document.documentElement.classList.remove('locked')
       window.scrollTo(0, 0)
-      // After the entry reveal settles, glide the first event's card + CTA into view.
-      const t = setTimeout(() => scrollToSlot(0), 2200)
+      // Bring the first event's card + CTA in promptly after entry (quick glide).
+      const t = setTimeout(() => scrollToSlot(0, 1200), 600)
       return () => clearTimeout(t)
     }
   }, [mode])

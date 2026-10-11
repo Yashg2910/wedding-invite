@@ -39,7 +39,7 @@ function smoothScrollTo(target: number, duration = 3460) {
 
 // Smooth-scroll to the "settled" position of event `i` (title + card in view).
 // i >= number of chapters scrolls to the Save-the-dates section.
-export function scrollToSlot(i: number) {
+export function scrollToSlot(i: number, duration?: number) {
   const vh = shared.vh
   const chaps = shared.chapters
   let target: number
@@ -51,7 +51,7 @@ export function scrollToSlot(i: number) {
   } else {
     target = document.documentElement.scrollHeight
   }
-  smoothScrollTo(target)
+  smoothScrollTo(target, duration)
 }
 
 // Advance from event `i` to the next event (or the Save-the-dates section).
