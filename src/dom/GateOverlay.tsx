@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useStore } from '../state/store'
 import { hostLine } from './guestName'
 import HandSVG from './HandSVG'
+import { startMusic } from './music'
 
 export default function GateOverlay({ beckonRef }: { beckonRef: React.RefObject<HTMLDivElement> }) {
   const mode = useStore((s) => s.mode)
@@ -48,7 +49,15 @@ export default function GateOverlay({ beckonRef }: { beckonRef: React.RefObject<
           <HandSVG />
         </div>
       </div>
-      <button className="enter" type="button" aria-label="Tap to open the doors of Rajwada" onClick={enter}></button>
+      <button
+        className="enter"
+        type="button"
+        aria-label="Tap to open the doors of Rajwada"
+        onClick={() => {
+          startMusic()
+          enter()
+        }}
+      ></button>
     </div>
   )
 }

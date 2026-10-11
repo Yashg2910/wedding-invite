@@ -11,6 +11,7 @@ import { hasPreview } from './dom/guestName'
 import GateOverlay from './dom/GateOverlay'
 import GuestPreview from './dom/GuestPreview'
 import Story from './dom/Story'
+import MuteButton from './dom/MuteButton'
 
 // Adapt resolution to sustained framerate. A decline steps the quality tier down
 // once (never up, to avoid oscillation); AdaptiveDpr scales DPR within the tier.
@@ -69,6 +70,7 @@ export default function App() {
         <i ref={threadBeadRef} />
       </div>
       <GateOverlay beckonRef={beckonRef} />
+      {mode === 'story' && <MuteButton />}
       <Story />
     </>
   )
