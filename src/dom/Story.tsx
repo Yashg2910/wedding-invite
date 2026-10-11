@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { CHAPTERS, OrnSVG } from './chapters'
 import ScratchCard from './ScratchCard'
 import Countdown from './Countdown'
@@ -64,7 +63,6 @@ function Chapter({ data }: { data: (typeof CHAPTERS)[number] }) {
 
 export default function Story() {
   const mode = useStore((s) => s.mode)
-  const [revealed, setRevealed] = useState(false)
 
   return (
     <main className={'story' + (mode === 'story' ? ' on' : '')}>
@@ -73,11 +71,27 @@ export default function Story() {
       ))}
 
       <section className="savedate">
-        <h2 className="gold-text">Save the dates</h2>
-        <p className="lede">Scratch the gold card to reveal them.</p>
-        <ScratchCard onReveal={() => setRevealed(true)} />
-        <Countdown live={revealed} />
+        <Countdown live />
         <p className="sample">Counting down to the celebrations in Indore.</p>
+        <p className="lede">Scratch the gold card to reveal the dates.</p>
+        <ScratchCard onReveal={() => {}} />
+        <div className="map-card">
+          <iframe
+            className="map-embed"
+            title="Venue — Hotel The Chandra Leela (TCL), Indore"
+            src="https://maps.google.com/maps?q=22.7549305,75.9337149&z=16&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <a
+            className="map-link"
+            href="https://maps.app.goo.gl/99nxBbFuwnzsH4gd8"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="map-pin" aria-hidden="true">📍</span> Hotel The Chandra Leela (TCL), Indore — View larger map
+          </a>
+        </div>
       </section>
       <footer className="next">
         <p>RSVP comes next.</p>
