@@ -24,7 +24,7 @@ from PIL import Image
 from rembg import new_session, remove
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC, OUT = os.path.join(ROOT, 'source-art'), os.path.join(ROOT, 'assets')
+SRC, OUT = os.path.join(ROOT, 'source-art'), os.path.join(ROOT, 'public', 'assets')
 WIDTH = 900
 
 # Gemini letterboxing to trim, as (x0, y0, x1, y1) in source pixels. None keeps the whole image.
@@ -90,5 +90,5 @@ if __name__ == '__main__':
     sizes = {}
     for k in keys:
         print(k); sizes[k + '_size'] = event(k, sessions)
-    print('\nPaste into js/config.js assets:')
+    print('\nPaste into src/config.ts assets (update <event>_size):')
     for k, v in sizes.items(): print(f'    "{k}": {v},')

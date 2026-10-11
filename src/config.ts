@@ -31,7 +31,7 @@ export const CONFIG: InviteConfig = {
     reception_fg: 'assets/reception_fg.webp',
     haldi_size: [900, 1200],
     sangeet_size: [900, 939],
-    phere_size: [900, 1200],
+    phere_size: [900, 1205],
     reception_size: [900, 1601],
   },
 }
