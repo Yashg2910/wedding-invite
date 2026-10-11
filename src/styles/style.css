@@ -130,6 +130,7 @@
   .title {
     font-family: var(--script); font-weight: 400; font-size: clamp(4.4rem, 21vw, 8rem); line-height: 1.12; margin: 0; padding: 0 .25em;
     color: var(--tc); text-shadow: var(--ts);
+    -webkit-text-stroke: var(--title-stroke, 0); paint-order: stroke fill;
     clip-path: inset(-.5em calc((1 - var(--tx, 0)) * 104%) -.6em -.4em);
     transform: translateY(calc((1 - var(--tx, 0)) * 18px));
   }
