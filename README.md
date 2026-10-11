@@ -62,7 +62,7 @@ The code sits in the path (`/td/`, `/od/`) so it reads as a normal link, not an 
 
 ## Deploy
 
-Netlify builds from the repo: build command `npm run build`, publish directory `dist` (already set in `netlify.toml`). Connect the repo in Netlify and it deploys on push.
+Vercel builds from the repo: framework **Vite**, build command `npm run build`, output directory `dist`. SPA routing (so category paths like `/od/` and `/td/` serve the app instead of 404-ing) is handled by `vercel.json`, which rewrites all non-asset paths to `/index.html`. Connect the repo in Vercel and it deploys on push.
 If the final address isn't `invite.ishayash.life`, update the `og:image` URL in `index.html`
 so the WhatsApp preview image works.
 
@@ -73,7 +73,7 @@ fine without it. To enable:
 
 1. Firebase console → create/open a project → add a **Web app** → copy the config.
 2. Put the values in `src/firebase-config.ts` (or as `VITE_FB_*` env vars in
-   Netlify / a `.env`). The key one is `measurementId` (`G-XXXXXXXXXX`).
+   Vercel / a `.env`). The key one is `measurementId` (`G-XXXXXXXXXX`).
 3. Redeploy. Events then show in Firebase → Analytics (and GA4).
 
 Events tracked (see `src/analytics.ts` + `track(...)` call sites):
