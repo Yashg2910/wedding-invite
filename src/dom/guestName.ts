@@ -26,7 +26,7 @@ export function cleanName(raw: string | null): string {
 export function greeting(name: string, style: string | null): string {
   if (!name) return 'Dear Family & Friends'
   if (style === 'friend') return 'Dear ' + name
-  return 'Shri ' + name + ' ji & Parivar'
+  return 'Dear ' + name
 }
 
 const params = new URLSearchParams(location.search)

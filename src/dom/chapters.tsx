@@ -24,7 +24,7 @@ const ALL_CHAPTERS: ChapterData[] = [
     hi: 'हल्दी',
     lede: 'Turmeric, marigolds and a lot of laughter to begin the celebrations.',
     date: '10 December',
-    time: '11:30 AM',
+    time: '11:30 AM onwards',
     venue: VENUE,
     style: {
       ['--tc' as string]: '#fff3d4',
@@ -93,10 +93,10 @@ const ALL_CHAPTERS: ChapterData[] = [
 export const CHAPTERS: ChapterData[] = ALL_CHAPTERS.filter((c) => isEventActive(c.key))
 
 const ALL_DATE_ROWS = [
-  { key: 'haldi', label: 'Haldi', value: '10 December · 11:30 AM' },
-  { key: 'sangeet', label: 'Sangeet', value: '10 December · 8:00 PM' },
-  { key: 'phere', label: 'Baraat & Phere', value: '11 December · 1:00 PM' },
-  { key: 'reception', label: 'Reception', value: '11 December · 8:00 PM' },
+  { key: 'haldi', label: 'Haldi', value: '10 December · 11:30 AM onwards' },
+  { key: 'sangeet', label: 'Sangeet', value: '10 December · 8:00 PM onwards' },
+  { key: 'phere', label: 'Baraat & Phere', value: '11 December · 1:00 PM onwards' },
+  { key: 'reception', label: 'Reception', value: '11 December · 8:00 PM onwards' },
 ]
 export const DATE_ROWS = ALL_DATE_ROWS.filter((d) => isEventActive(d.key))
 

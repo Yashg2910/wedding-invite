@@ -186,7 +186,11 @@
   .dress { margin: .9rem 0 0; font-size: 1.12rem; font-style: italic; padding-top: .8rem; border-top: 1px solid rgba(212,164,69,.3); }
   .dress b { font-family: var(--caps); font-style: normal; font-size: .8rem; letter-spacing: .14em; color: #ffd98a; font-weight: 600; margin-right: .35em; }
 
-  .savedate { position: relative; min-height: 115svh; padding: 16svh 7% 12svh; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .savedate { position: relative; min-height: 100svh; padding: 8svh 7%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  /* Golden monogram crowning the final save-the-date screen, above the countdown.
+     Gentle gold glow + soft shadow so it reads on the dark backdrop. */
+  .savedate-logo { display: block; width: clamp(64px, 17vw, 100px); height: auto; margin: 0 auto clamp(.5rem, 2svh, 1.2rem);
+    filter: drop-shadow(0 0 16px rgba(255,210,120,.45)) drop-shadow(0 4px 12px rgba(0,0,0,.45)); }
   .savedate h2 { font-family: var(--script); font-weight: 400; font-size: clamp(3.6rem, 16vw, 6.4rem); margin: 0; line-height: 1.15; padding: 0 .25em; }
   .savedate .lede { color: var(--ink); opacity: .9; text-shadow: none; }
   .scratch { position: relative; width: min(88%, 360px); margin: 2rem 0 0; border-radius: 18px; overflow: hidden; background: #fff7e6; color: #4a1a14; box-shadow: 0 20px 50px -20px rgba(0,0,0,.8); }

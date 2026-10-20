@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { CHAPTERS, OrnSVG } from './chapters'
-import ScratchCard from './ScratchCard'
+// import ScratchCard from './ScratchCard' // temporarily hidden
 import Countdown from './Countdown'
 import HandSVG from './HandSVG'
 import { useStore } from '../state/store'
@@ -94,10 +94,13 @@ export default function Story() {
       ))}
 
       <section className="savedate" data-key="savedate">
+        <img className="savedate-logo" src="/assets/logo_light.webp" alt="Yash & Isha" width={378} height={508} />
         <Countdown live />
         <p className="sample">Counting down to the celebrations in Indore.</p>
+        {/* Scratch card temporarily hidden
         <p className="lede">Scratch the gold card to reveal the dates.</p>
         <ScratchCard onReveal={() => {}} />
+        */}
         <div className="map-card">
           <div className="map-frame">
             <iframe
