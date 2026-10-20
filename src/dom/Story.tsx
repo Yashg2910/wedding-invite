@@ -67,23 +67,32 @@ export default function Story() {
   const mode = useStore((s) => s.mode)
 
   // Fire one event_view per screen the first time it comes into view.
+  // We observe each chapter's sticky .pin (and the .savedate section) rather
+  // than the tall .chapter wrapper: the .pin is exactly one viewport tall and
+  // holds the event's title + text, so "the Haldi screen is showing" maps
+  // directly to "the Haldi pin is in view".
   useEffect(() => {
     if (mode !== 'story') return
     const seen = new Set<string>()
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
-          if (!e.isIntersecting || e.intersectionRatio < 0.5) continue
-          const k = (e.target as HTMLElement).dataset.key || 'savedate'
+          if (!e.isIntersecting || e.intersectionRatio < 0.6) continue
+          const host = e.target as HTMLElement
+          // .pin lives inside .chapter[data-key]; .savedate has its own key.
+          const k =
+            host.dataset.key ||
+            host.closest<HTMLElement>('[data-key]')?.dataset.key ||
+            'savedate'
           if (!seen.has(k)) {
             seen.add(k)
             track('event_view', { event: k })
           }
         }
       },
-      { threshold: [0.5] },
+      { threshold: [0.6] },
     )
-    document.querySelectorAll('.chapter, .savedate').forEach((el) => io.observe(el))
+    document.querySelectorAll('.chapter .pin, .savedate').forEach((el) => io.observe(el))
     return () => io.disconnect()
   }, [mode])
 
