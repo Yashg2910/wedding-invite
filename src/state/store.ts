@@ -54,11 +54,11 @@ export const shared = {
   savedate: null as SectionGeom | null,
   scrollMax: 0,
   // smoothed per-chapter values (mirrors the old SM.*). Length covers the longest
-  // event set (5: Haldi, Sangeet, Mayra, Baraat & Phere, Reception); indexed by
-  // event index in the frame loop, so it must be at least as long as EV.
-  rev: [0, 0, 0, 0, 0],
-  prog: [0, 0, 0, 0, 0],
-  x: [0, 0, 0, 0, 0],
+  // event set (6: Ganesh Pujan, Haldi, Sangeet, Mayra, Baraat & Phere, Reception);
+  // indexed by event index in the frame loop, so it must be at least as long as EV.
+  rev: [0, 0, 0, 0, 0, 0],
+  prog: [0, 0, 0, 0, 0, 0],
+  x: [0, 0, 0, 0, 0, 0],
   dim: 0,
   // gate opening timeline (seconds since the Enter tap)
   entered: false,

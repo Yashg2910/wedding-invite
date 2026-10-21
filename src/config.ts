@@ -21,6 +21,8 @@ export const CONFIG: InviteConfig = {
 
   assets: {
     gate: 'assets/gate.webp',
+    ganeshpujan_bg: 'assets/ganeshpujan_bg.webp',
+    ganeshpujan_fg: 'assets/ganeshpujan_fg.webp',
     haldi_bg: 'assets/haldi_bg.webp',
     haldi_fg: 'assets/haldi_fg.webp',
     sangeet_bg: 'assets/sangeet_bg.webp',
@@ -31,6 +33,7 @@ export const CONFIG: InviteConfig = {
     phere_fg: 'assets/phere_fg.webp',
     reception_bg: 'assets/reception_bg.webp',
     reception_fg: 'assets/reception_fg.webp',
+    ganeshpujan_size: [900, 1205],
     haldi_size: [900, 1200],
     sangeet_size: [900, 939],
     mayra_size: [900, 1205],

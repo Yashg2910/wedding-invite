@@ -19,6 +19,7 @@ export interface EventDef {
 }
 
 const RAW = [
+  { key: 'ganeshpujan', focus: [0.5, 0.52], clear: '#efe3c4', sway: 0.004, bob: 0.0026, glitter: 0.3, fall: 1, spark: 0, cols: ['#ffcf5a', '#ff9a3d', '#ffe6a6'], psize: 0.05, edge: '#ffbe3d', seed: 3.7 },
   { key: 'haldi', focus: [0.5, 0.54], clear: '#f1c96e', sway: 0.005, bob: 0.003, glitter: 0, fall: 1, spark: 0, cols: ['#ff8a1c', '#ffb01f', '#ffd24a'], psize: 0.055, edge: '#ffb300', seed: 1.3 },
   { key: 'sangeet', focus: [0.36, 0.64], clear: '#140f33', sway: 0.014, bob: 0.008, glitter: 1.1, fall: 0.1, spark: 1, cols: ['#ff8fe0', '#8fe3ff', '#ffe39a'], psize: 0.08, edge: '#c07bff', seed: 4.1 },
   { key: 'mayra', focus: [0.62, 0.78], clear: '#f3dca8', sway: 0.005, bob: 0.0028, glitter: 0.35, fall: 1, spark: 0, cols: ['#ffd24a', '#ff9f68', '#ffe9b0'], psize: 0.05, edge: '#ff9a3d', seed: 5.3 },
