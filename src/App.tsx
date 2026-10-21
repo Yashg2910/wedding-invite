@@ -6,7 +6,6 @@ import { D } from './three/events'
 import { qualityFor } from './three/quality'
 import { useStore, type Tier } from './state/store'
 import { useScrollDriver } from './dom/useScrollDriver'
-import { scrollToSlot } from './dom/nav'
 import { hasPreview, hasGuest, urlStyle, guestSlug } from './dom/guestName'
 import { category } from './category'
 import { initAnalytics, track } from './analytics'
@@ -63,10 +62,9 @@ export default function App() {
   useEffect(() => {
     if (mode === 'story') {
       document.documentElement.classList.remove('locked')
+      // Land on the blessings screen (top of the story). The guest reads the
+      // family blessings first, then scrolls down to the first event (Haldi).
       window.scrollTo(0, 0)
-      // Bring the first event's card + CTA in promptly after entry (quick glide).
-      const t = setTimeout(() => scrollToSlot(0, 1200), 600)
-      return () => clearTimeout(t)
     }
   }, [mode])
 

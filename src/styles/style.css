@@ -93,6 +93,60 @@
   .proto.editing input { display: block; }
   .proto button:focus-visible, .proto input:focus-visible { outline: 2px solid #ffc72c; outline-offset: 2px; }
 
+  /* ---------- Blessings screen (between gate and first event) ---------- */
+  /* A full-height, self-contained intro screen on a warm LIGHT backdrop (ivory
+     + gold) so it reads as a printed-card style page distinct from the dark
+     event screens behind it. Shares the event "next" button + hand gesture. */
+  .blessings {
+    position: relative; z-index: 3; min-height: 100svh;
+    display: flex; align-items: center; justify-content: center;
+    padding: calc(env(safe-area-inset-top, 0px) + 6svh) 7% calc(env(safe-area-inset-bottom, 0px) + 6svh);
+    text-align: center; color: #5a3410;
+    background:
+      radial-gradient(130% 80% at 50% 0%, rgba(240,214,150,.55) 0%, rgba(250,243,228,0) 60%),
+      radial-gradient(120% 90% at 50% 110%, rgba(226,185,100,.4) 0%, rgba(250,243,228,0) 55%),
+      linear-gradient(180deg, #fbf4e3 0%, #f6ecd4 45%, #f1e3c2 100%);
+  }
+  .blessings-inner { width: min(100%, 540px); display: flex; flex-direction: column; align-items: center; }
+  .blessings-inner > * { opacity: 0; transform: translateY(14px); animation: rise 1s cubic-bezier(.2,.8,.2,1) forwards; }
+  .blessings-inner > :nth-child(1) { animation-delay: .1s; }
+  .blessings-inner > :nth-child(2) { animation-delay: .25s; }
+  .blessings-inner > :nth-child(3) { animation-delay: .4s; }
+  .blessings-inner > :nth-child(4) { animation-delay: .55s; }
+  .blessings-inner > :nth-child(5) { animation-delay: .7s; }
+  .blessings-inner > :nth-child(6) { animation-delay: .85s; }
+  .blessings-inner > :nth-child(7) { animation-delay: 1s; }
+  .blessings-inner > :nth-child(8) { animation-delay: 1.15s; }
+  .blessings-inner > :nth-child(9) { animation-delay: 1.35s; }
+
+  .ganesha-emblem { display: block; width: clamp(52px, 15vw, 80px); height: auto; margin: 0 auto .45em;
+    filter: drop-shadow(0 3px 10px rgba(120,80,20,.25)); }
+  .blessings .ganesh { margin: 0 0 1.4em; color: #9a6a16; text-shadow: none; }
+  .blessings-head { font-family: var(--caps); font-weight: 600; font-size: clamp(12px, 3.6vw, 16px);
+    letter-spacing: .22em; text-transform: uppercase; margin: 0; color: #a9792a; }
+  .blessings-grandparents { font-family: var(--serif); font-style: italic; font-size: clamp(16px, 4.6vw, 22px);
+    line-height: 1.4; margin: .55em auto 0; max-width: 26ch; color: #5a3410; }
+  .blessings .flourish { width: min(56%, 230px); margin: 1em auto 1.3em; }
+  .blessings .flourish [stroke="#e2b964"], .blessings .flourish g { stroke: #b4832c; }
+  .blessings .flourish [fill="#e2b964"] { fill: #b4832c; }
+
+  .blessings-couple { margin: 0; }
+  .blessings-couple + .blessings-amp { margin: .1em 0; }
+  /* On the light card the shimmer gradient is too pale, so the names use a
+     solid rich-gold fill instead of .gold-text's light shimmer. */
+  .blessings-name { font-family: var(--script); font-weight: 400; font-size: clamp(42px, 13vw, 76px);
+    line-height: 1.1; margin: 0; padding: 0 .15em;
+    background: linear-gradient(100deg, #8a5a14 0%, #c9962f 30%, #e7b849 50%, #c9962f 70%, #8a5a14 100%) 0 0 / 200% 100% repeat-x;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 1px 1px rgba(90,52,16,.25)); animation: shimmer 6s linear infinite; }
+  .blessings-parents { font-family: var(--caps); font-weight: 600; font-size: clamp(11px, 3.2vw, 14px);
+    letter-spacing: .1em; text-transform: uppercase; margin: .35em 0 0; color: #7a5218; }
+  .blessings-amp { font-family: var(--script); font-size: clamp(30px, 9vw, 52px); line-height: 1;
+    margin: .25em 0; color: #b4832c; }
+
+  /* Always-visible on the blessings screen (no scroll --p to drive it here). */
+  .next-cue.blessings-cue { margin-top: 2em; opacity: 1; }
+
   /* ---------- Story ---------- */
   .story { position: relative; z-index: 2; visibility: hidden; }
   .story.on { visibility: visible; }
@@ -243,4 +297,6 @@
        animation above would otherwise leave it stuck at opacity:0. Force the
        gate text visible. */
     .gtext > * { animation-duration: .01ms !important; opacity: 1 !important; transform: none !important; }
+    .blessings-inner > * { animation-duration: .01ms !important; opacity: 1 !important; transform: none !important; }
+    .blessings-name { animation: none !important; }
   }
