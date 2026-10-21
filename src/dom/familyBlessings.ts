@@ -8,7 +8,7 @@
 // Default / groom-side invites (td, od) show the GROOM's grandparents.
 // Bride-side invites (btd, bod) show the BRIDE's grandparents in that same
 // top slot instead — see src/category.ts for how the category is derived.
-import { isBride } from '../category'
+import { showBrideBlessings } from '../category'
 
 export interface Person {
   name: string
@@ -34,7 +34,7 @@ const BRIDE_GRANDPARENTS = 'Late Smt. Madhubala Agrawal w/o Shri Premsundar Agra
 
 /**
  * Grandparents shown in the top "With the blessings of" slot.
- * Groom-side invites show the groom's grandparents; bride-side invites
- * (btd / bod) show the bride's grandparents instead.
+ * Bride-facing invites (btd / bod / od) show the bride's grandparents;
+ * everything else shows the groom's.
  */
-export const grandparents = isBride ? BRIDE_GRANDPARENTS : GROOM_GRANDPARENTS
+export const grandparents = showBrideBlessings ? BRIDE_GRANDPARENTS : GROOM_GRANDPARENTS

@@ -29,6 +29,15 @@ export const isTwoDay = category === 'twoday' || category === 'bride-twoday'
 /** Whether this is a bride-side invite (adds the Mayra ceremony). */
 export const isBride = category === 'bride-oneday' || category === 'bride-twoday'
 
+/**
+ * Whether the blessings screen should lead with the BRIDE's family (her
+ * grandparents in the top slot, Isha above Yash). True for the bride-side
+ * invites (btd / bod) and also for the one-day invite (od) — which is given
+ * to the bride's guests — even though od is not gated as a "bride" invite for
+ * the Mayra ceremony.
+ */
+export const showBrideBlessings = isBride || category === 'oneday'
+
 // Events that happen on day 2 — shown in both one-day and two-day categories.
 // Mayra (bride-side) is on day 2, right before Baraat & Phere.
 const DAY2 = new Set(['mayra', 'phere', 'reception'])

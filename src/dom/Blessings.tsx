@@ -1,5 +1,5 @@
 import { GROOM, BRIDE, grandparents } from './familyBlessings'
-import { isBride } from '../category'
+import { showBrideBlessings } from '../category'
 import HandSVG from './HandSVG'
 import { scrollToSlot } from './nav'
 import { track } from '../analytics'
@@ -47,9 +47,9 @@ export default function Blessings() {
   const groom = <CoupleBlock name={GROOM.name} relation="S/o" mother={GROOM.mother} father={GROOM.father} />
   const bride = <CoupleBlock name={BRIDE.name} relation="D/o" mother={BRIDE.mother} father={BRIDE.father} />
 
-  // Bride-side invites (btd / bod) lead with the bride; otherwise the groom.
-  const first = isBride ? bride : groom
-  const second = isBride ? groom : bride
+  // Bride-facing invites (btd / bod / od) lead with the bride; otherwise the groom.
+  const first = showBrideBlessings ? bride : groom
+  const second = showBrideBlessings ? groom : bride
 
   return (
     <section className="blessings" data-key="blessings">
