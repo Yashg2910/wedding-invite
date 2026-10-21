@@ -19,6 +19,24 @@ const VENUE = 'The Chandra Leela (TCL), Indore'
 const ALL_CHAPTERS: ChapterData[] = [
   {
     ev: 0,
+    key: 'ganeshpujan',
+    title: 'Ganesh Pujan',
+    long: true,
+    hi: 'गणेश पूजन',
+    lede: '',
+    date: '10 December',
+    time: '8:00 AM onwards',
+    venue: VENUE,
+    style: {
+      ['--tc' as string]: '#fff4d4',
+      ['--title-stroke' as string]: '1.3px #2a1a02',
+      ['--ts' as string]:
+        '0 0 6px #ffd98a, 0 0 15px #ff9f1f, 0 0 30px #e07b00, 0 0 52px #a85a00, 0 0 10px rgba(30,20,2,.72)',
+      ['--scrim-top' as string]: 'rgba(255,246,224,.5)',
+    },
+  },
+  {
+    ev: 1,
     key: 'haldi',
     title: 'Haldi',
     hi: 'हल्दी',
@@ -36,7 +54,7 @@ const ALL_CHAPTERS: ChapterData[] = [
     },
   },
   {
-    ev: 1,
+    ev: 2,
     key: 'sangeet',
     title: 'Sangeet',
     hi: 'संगीत',
@@ -52,7 +70,7 @@ const ALL_CHAPTERS: ChapterData[] = [
     },
   },
   {
-    ev: 2,
+    ev: 3,
     key: 'mayra',
     title: 'Mayra',
     hi: 'मायरा',
@@ -69,7 +87,7 @@ const ALL_CHAPTERS: ChapterData[] = [
     },
   },
   {
-    ev: 3,
+    ev: 4,
     key: 'phere',
     title: 'Baraat & Phere',
     long: true,
@@ -87,7 +105,7 @@ const ALL_CHAPTERS: ChapterData[] = [
     },
   },
   {
-    ev: 4,
+    ev: 5,
     key: 'reception',
     title: 'Reception',
     hi: 'स्वागत समारोह',
@@ -110,6 +128,7 @@ const ALL_CHAPTERS: ChapterData[] = [
 export const CHAPTERS: ChapterData[] = ALL_CHAPTERS.filter((c) => isEventActive(c.key))
 
 const ALL_DATE_ROWS = [
+  { key: 'ganeshpujan', label: 'Ganesh Pujan', value: '10 December · 8:00 AM onwards' },
   { key: 'haldi', label: 'Haldi', value: '10 December · 11:30 AM onwards' },
   { key: 'sangeet', label: 'Sangeet', value: '10 December · 8:00 PM onwards' },
   { key: 'mayra', label: 'Mayra', value: '11 December · 10:00 AM onwards' },

@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { CHAPTERS, OrnSVG } from './chapters'
 // import ScratchCard from './ScratchCard' // temporarily hidden
+import Blessings from './Blessings'
 import Countdown from './Countdown'
 import HandSVG from './HandSVG'
 import { useStore } from '../state/store'
@@ -98,6 +99,8 @@ export default function Story() {
 
   return (
     <main className={'story' + (mode === 'story' ? ' on' : '')}>
+      <Blessings />
+
       {CHAPTERS.map((c, i) => (
         <Chapter key={c.ev} data={c} index={i} isLast={i === CHAPTERS.length - 1} />
       ))}
