@@ -8,6 +8,7 @@ Put the originals in ../source-art/ with these names, then run:
   gate.png        Rajwada gate, straight-on
   haldi.png       Haldi caricature
   sangeet.png     Sangeet caricature
+  mayra.png       Mayra caricature (bride-side)
   phere.png       Baraat/Phere caricature
   reception.png   Reception caricature
 
@@ -28,10 +29,10 @@ SRC, OUT = os.path.join(ROOT, 'source-art'), os.path.join(ROOT, 'public', 'asset
 WIDTH = 900
 
 # Gemini letterboxing to trim, as (x0, y0, x1, y1) in source pixels. None keeps the whole image.
-CROPS = {'haldi': None, 'sangeet': (0, 520, 1792, 2390), 'phere': None, 'reception': (0, 398, 1376, 2846)}
+CROPS = {'haldi': None, 'sangeet': (0, 520, 1792, 2390), 'mayra': None, 'phere': None, 'reception': (0, 398, 1376, 2846)}
 # Segmentation model per image. isnet-anime suits caricatures; u2net_human_seg works
 # better when the couple fills the frame (Haldi).
-MODELS = {'haldi': 'u2net_human_seg', 'sangeet': 'isnet-anime', 'phere': 'isnet-anime', 'reception': 'isnet-anime'}
+MODELS = {'haldi': 'u2net_human_seg', 'sangeet': 'isnet-anime', 'mayra': 'isnet-anime', 'phere': 'isnet-anime', 'reception': 'isnet-anime'}
 
 def save_webp(img, path, q):
     img.save(path, 'WEBP', quality=q, method=6)

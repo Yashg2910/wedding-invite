@@ -21,6 +21,7 @@ export interface EventDef {
 const RAW = [
   { key: 'haldi', focus: [0.5, 0.54], clear: '#f1c96e', sway: 0.005, bob: 0.003, glitter: 0, fall: 1, spark: 0, cols: ['#ff8a1c', '#ffb01f', '#ffd24a'], psize: 0.055, edge: '#ffb300', seed: 1.3 },
   { key: 'sangeet', focus: [0.36, 0.64], clear: '#140f33', sway: 0.014, bob: 0.008, glitter: 1.1, fall: 0.1, spark: 1, cols: ['#ff8fe0', '#8fe3ff', '#ffe39a'], psize: 0.08, edge: '#c07bff', seed: 4.1 },
+  { key: 'mayra', focus: [0.42, 0.58], clear: '#f3dca8', sway: 0.005, bob: 0.0028, glitter: 0.35, fall: 1, spark: 0, cols: ['#ffd24a', '#ff9f68', '#ffe9b0'], psize: 0.05, edge: '#ff9a3d', seed: 5.3 },
   { key: 'phere', focus: [0.5, 0.57], clear: '#e5ad78', sway: 0.004, bob: 0.002, glitter: 0.45, fall: 1, spark: 0, cols: ['#f7c6d0', '#ffffff', '#e8849a'], psize: 0.05, edge: '#ff6a3d', seed: 7.7 },
   { key: 'reception', focus: [0.5, 0.5], clear: '#2a141c', sway: 0.005, bob: 0.0025, glitter: 0.75, fall: 0, spark: 1, cols: ['#ffe39a', '#ffd98a', '#fff3c8'], psize: 0.06, edge: '#ffd36b', seed: 2.9 },
 ] as const

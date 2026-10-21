@@ -53,6 +53,23 @@ const ALL_CHAPTERS: ChapterData[] = [
   },
   {
     ev: 2,
+    key: 'mayra',
+    title: 'Mayra',
+    hi: 'मायरा',
+    lede: "The bride's maternal family arrives with blessings, gifts and sweets.",
+    date: '11 December',
+    time: '10:00 AM onwards',
+    venue: VENUE,
+    style: {
+      ['--tc' as string]: '#fff6e0',
+      ['--title-stroke' as string]: '1.3px #2a1402',
+      ['--ts' as string]:
+        '0 0 6px #ffcf6a, 0 0 15px #ff9f1f, 0 0 30px #e07b00, 0 0 52px #a85a00, 0 0 10px rgba(30,16,2,.72)',
+      ['--scrim-top' as string]: 'rgba(255,246,224,.58)',
+    },
+  },
+  {
+    ev: 3,
     key: 'phere',
     title: 'Baraat & Phere',
     long: true,
@@ -70,7 +87,7 @@ const ALL_CHAPTERS: ChapterData[] = [
     },
   },
   {
-    ev: 3,
+    ev: 4,
     key: 'reception',
     title: 'Reception',
     hi: 'स्वागत समारोह',
@@ -95,6 +112,7 @@ export const CHAPTERS: ChapterData[] = ALL_CHAPTERS.filter((c) => isEventActive(
 const ALL_DATE_ROWS = [
   { key: 'haldi', label: 'Haldi', value: '10 December · 11:30 AM onwards' },
   { key: 'sangeet', label: 'Sangeet', value: '10 December · 8:00 PM onwards' },
+  { key: 'mayra', label: 'Mayra', value: '11 December · 10:00 AM onwards' },
   { key: 'phere', label: 'Baraat & Phere', value: '11 December · 1:00 PM onwards' },
   { key: 'reception', label: 'Reception', value: '11 December · 8:00 PM onwards' },
 ]

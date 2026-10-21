@@ -57,8 +57,10 @@ A short path code controls the event set (see `src/category.ts`):
 |---|---|
 | `https://<your-site>/?to=…` or `/td/?to=…` | **Two-day** — all events (Haldi, Sangeet, Baraat & Phere, Reception). Default. |
 | `https://<your-site>/od/?to=…` | **One-day** — day-2 only (Baraat & Phere, Reception); Haldi & Sangeet are hidden. |
+| `https://<your-site>/btd/?to=…` | **Bride two-day** — all events plus **Mayra** (a bride-side ceremony before Baraat & Phere). |
+| `https://<your-site>/bod/?to=…` | **Bride one-day** — day-2 only: **Mayra**, Baraat & Phere, Reception. |
 
-The code sits in the path (`/td/`, `/od/`) so it reads as a normal link, not an obvious category flag. Everything else (greeting, transitions, scratch dates, map) adapts automatically.
+The code sits in the path (`/td/`, `/od/`, `/btd/`, `/bod/`) so it reads as a normal link, not an obvious category flag. The `b` prefix marks a bride-side invite, which adds the Mayra ceremony. Everything else (greeting, transitions, scratch dates, map) adapts automatically.
 
 ## Deploy
 
