@@ -1,4 +1,4 @@
-import { GROOM, BRIDE, grandparents } from './familyBlessings'
+import { GROOM, BRIDE } from './familyBlessings'
 import { showBrideBlessings } from '../category'
 import HandSVG from './HandSVG'
 import { scrollToSlot } from './nav'
@@ -32,24 +32,36 @@ function Flourish() {
   )
 }
 
-function CoupleBlock({ name, relation, mother, father }: { name: string; relation: string; mother: string; father: string }) {
+function CoupleBlock({ name, relation, grandRelation, grandparents, mother, father }: { name: string; relation: string; grandRelation?: string; grandparents?: string; mother: string; father: string }) {
   return (
     <div className="blessings-couple">
       <p className="blessings-name gold-text">{name}</p>
+      {grandparents && <p className="blessings-grandparents">{grandRelation} {grandparents}</p>}
       <p className="blessings-parents">
-        {relation} {mother} &amp; {father}
+        {relation} {mother} &amp; CA. {father}
       </p>
     </div>
   )
 }
 
 export default function Blessings() {
-  const groom = <CoupleBlock name={GROOM.name} relation="S/o" mother={GROOM.mother} father={GROOM.father} />
-  const bride = <CoupleBlock name={BRIDE.name} relation="D/o" mother={BRIDE.mother} father={BRIDE.father} />
+  const lead = showBrideBlessings ? BRIDE : GROOM
+  const other = showBrideBlessings ? GROOM : BRIDE
 
-  // Bride-facing invites (btd / bod / od) lead with the bride; otherwise the groom.
-  const first = showBrideBlessings ? bride : groom
-  const second = showBrideBlessings ? groom : bride
+  // Groom is always "S/o"; bride is always "D/o" — independent of display order.
+  const relationFor = (p: typeof GROOM) => (p === GROOM ? 'S/o' : 'D/o')
+  const grandRelationFor = (p: typeof GROOM) => (p === GROOM ? 'Grand S/o' : 'Grand D/o')
+
+  // Lead person: grandparents line sits at the top (above the invite sentence),
+  // so it is omitted from the lead block itself. The second person keeps their
+  // grandparents line in-block (above their parents), prefixed with their
+  // grand-relation (Grand S/o for the groom, Grand D/o for the bride).
+  const first = <CoupleBlock name={lead.name} relation={relationFor(lead)} mother={lead.mother} father={lead.father} />
+  const second = <CoupleBlock name={other.name} relation={relationFor(other)} grandRelation={grandRelationFor(other)} grandparents={other.grandparents} mother={other.mother} father={other.father} />
+
+  // The invite line references the lead person: a bride-side invite blesses
+  // their "grand daughter", a groom-side invite their "grand son".
+  const grandChild = showBrideBlessings ? 'grand daughter' : 'grand son'
 
   return (
     <section className="blessings" data-key="blessings">
@@ -57,8 +69,11 @@ export default function Blessings() {
         <GaneshaEmblem />
         <p className="ganesh" lang="hi">॥ श्री गणेशाय नमः ॥</p>
 
-        <p className="blessings-head">With the blessings of</p>
-        <p className="blessings-grandparents">{grandparents}</p>
+        <p className="blessings-grandparents">{lead.grandparents}</p>
+
+        <p className="blessings-head">
+          Take great pleasure in inviting you to bless the wedding ceremony of their beloved {grandChild}
+        </p>
 
         <Flourish />
 

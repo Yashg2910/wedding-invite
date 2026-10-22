@@ -2,39 +2,33 @@
 // the gate opening and the first event (Haldi).
 //
 // Sequence on screen (top → bottom):
-//   Grandparents → YASH (groom) → mother, father
-//   then Isha (bride) → mother, father
+//   ॥ श्री गणेशाय नमः ॥ → Ganesha emblem →
+//   "...bless the wedding ceremony of their beloved grand son/daughter" →
+//   YASH (groom) → grandparents → parents
+//   then & → ISHA (bride) → grandparents → parents
 //
-// Default / groom-side invites (td, od) show the GROOM's grandparents.
-// Bride-side invites (btd, bod) show the BRIDE's grandparents in that same
-// top slot instead — see src/category.ts for how the category is derived.
-import { showBrideBlessings } from '../category'
+// Default / groom-side invites (td, od) lead with the groom.
+// Bride-side invites (btd, bod) lead with the bride — see src/category.ts for
+// how the category is derived.
 
 export interface Person {
   name: string
+  /** Shown above the parents line, e.g. grandparents' blessing line. */
+  grandparents: string
   mother: string
   father: string
 }
 
 export const GROOM: Person = {
   name: 'Yash',
+  grandparents: 'Smt. Urmila Devi w/o Late Shri Ramkishor Ji Gupta',
   mother: 'Sandhya Gupta',
   father: 'Sanjeev Gupta',
 }
 
 export const BRIDE: Person = {
   name: 'Isha',
+  grandparents: 'Late Smt. Madhubala Agrawal w/o Shri Premsundar Agrawal',
   mother: 'Vinam Agrawal',
   father: 'Nitinkumar Agrawal',
 }
-
-// Grandparent blessing lines.
-const GROOM_GRANDPARENTS = 'Smt. Urmila Devi w/o Late Shri Ramkishor Ji Gupta'
-const BRIDE_GRANDPARENTS = 'Late Smt. Madhubala Agrawal w/o Shri Premsundar Agrawal'
-
-/**
- * Grandparents shown in the top "With the blessings of" slot.
- * Bride-facing invites (btd / bod / od) show the bride's grandparents;
- * everything else shows the groom's.
- */
-export const grandparents = showBrideBlessings ? BRIDE_GRANDPARENTS : GROOM_GRANDPARENTS

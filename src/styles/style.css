@@ -122,10 +122,10 @@
   .ganesha-emblem { display: block; width: clamp(52px, 15vw, 80px); height: auto; margin: 0 auto .45em;
     filter: drop-shadow(0 3px 10px rgba(120,80,20,.25)); }
   .blessings .ganesh { margin: 0 0 1.4em; color: #9a6a16; text-shadow: none; }
-  .blessings-head { font-family: var(--caps); font-weight: 600; font-size: clamp(12px, 3.6vw, 16px);
-    letter-spacing: .22em; text-transform: uppercase; margin: 0; color: #a9792a; }
-  .blessings-grandparents { font-family: var(--serif); font-style: italic; font-size: clamp(16px, 4.6vw, 22px);
-    line-height: 1.4; margin: .55em auto 0; max-width: 26ch; color: #5a3410; }
+  .blessings-head { font-family: var(--serif); font-weight: 600; font-size: clamp(11px, 3vw, 14px);
+    letter-spacing: .02em; margin: 0 auto; max-width: 100%; line-height: 1.4; color: #a9792a; }
+  .blessings-grandparents { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: clamp(13px, 3.4vw, 16px);
+    line-height: 1.35; letter-spacing: 0; margin: .4em auto 0; max-width: 100%; color: #5a3410; }
   .blessings .flourish { width: min(56%, 230px); margin: 1em auto 1.3em; }
   .blessings .flourish [stroke="#e2b964"], .blessings .flourish g { stroke: #b4832c; }
   .blessings .flourish [fill="#e2b964"] { fill: #b4832c; }
@@ -139,8 +139,8 @@
     background: linear-gradient(100deg, #8a5a14 0%, #c9962f 30%, #e7b849 50%, #c9962f 70%, #8a5a14 100%) 0 0 / 200% 100% repeat-x;
     -webkit-background-clip: text; background-clip: text; color: transparent;
     filter: drop-shadow(0 1px 1px rgba(90,52,16,.25)); animation: shimmer 6s linear infinite; }
-  .blessings-parents { font-family: var(--caps); font-weight: 600; font-size: clamp(11px, 3.2vw, 14px);
-    letter-spacing: .1em; text-transform: uppercase; margin: .35em 0 0; color: #7a5218; }
+  .blessings-parents { font-family: var(--serif); font-weight: 700; font-size: clamp(13px, 3.6vw, 16px);
+    letter-spacing: .02em; margin: .35em 0 0; color: #7a5218; }
   .blessings-amp { font-family: var(--script); font-size: clamp(30px, 9vw, 52px); line-height: 1;
     margin: .25em 0; color: #b4832c; }
 
