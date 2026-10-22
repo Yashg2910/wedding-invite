@@ -263,6 +263,14 @@
   @keyframes flip { from { transform: rotateX(-90deg); opacity: .3; } to { transform: none; opacity: 1; } }
   .unit small { margin-top: .5rem; font-family: var(--caps); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; opacity: .85; }
   .sample { font-size: .95rem; font-style: italic; opacity: .65; margin: .4rem 0 0; }
+  /* "A Little Request" note below the countdown — a sweet message from Tiya. */
+  .little-request { margin: 1.8rem 0 0; display: flex; flex-direction: column; align-items: center; gap: .35rem; max-width: 100%; }
+  .little-request-title { font-family: var(--caps); font-weight: 600; font-size: clamp(.8rem, 3.4vw, .95rem);
+    letter-spacing: .14em; text-transform: uppercase; color: #e9c46a; margin: 0; }
+  .little-request-quote { font-family: var(--serif); font-style: italic; font-size: clamp(1.1rem, 4.2vw, 1.7rem); line-height: 1.3;
+    color: #fbe7c0; margin: 0; white-space: nowrap; max-width: 100%; }
+  .little-request-by { font-family: var(--caps); font-style: italic; font-weight: 500; font-size: clamp(.8rem, 3.4vw, .95rem);
+    letter-spacing: .12em; opacity: .85; margin: .15rem 0 0; }
   /* Venue map below the scratch card — static preview that opens Google Maps on tap. */
   .map-card { width: min(90%, 380px); margin: 2.2rem 0 0; }
   .map-frame { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px -20px rgba(0,0,0,.8); }

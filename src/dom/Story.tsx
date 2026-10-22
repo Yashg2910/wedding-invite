@@ -108,7 +108,11 @@ export default function Story() {
       <section className="savedate" data-key="savedate">
         <img className="savedate-logo" src="/assets/logo_light.webp" alt="Yash & Isha" width={378} height={508} />
         <Countdown live />
-        <p className="sample">Counting down to the celebrations in Indore.</p>
+        <div className="little-request">
+          <p className="little-request-title">A Little Request ❤️</p>
+          <p className="little-request-quote">“Mele chachu ki shaadi me zalool zalool aana.”</p>
+          <p className="little-request-by">— Tiya Gupta</p>
+        </div>
         {/* Scratch card temporarily hidden
         <p className="lede">Scratch the gold card to reveal the dates.</p>
         <ScratchCard onReveal={() => {}} />
@@ -144,9 +148,6 @@ export default function Story() {
           </div>
         </div>
       </section>
-      <footer className="next">
-        <p>RSVP comes next.</p>
-      </footer>
     </main>
   )
 }
