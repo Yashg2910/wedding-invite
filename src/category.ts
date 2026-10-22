@@ -43,7 +43,9 @@ export const showBrideBlessings = isBride || category === 'oneday'
 const DAY2 = new Set(['mayra', 'phere', 'reception'])
 
 // Events that only appear on bride-side invites.
-const BRIDE_ONLY = new Set(['mayra'])
+// Ganesh Pujan is also a day-1 event, so (being outside DAY2) it survives the
+// isTwoDay check only — i.e. it shows exclusively on the bride two-day invite (/btd).
+const BRIDE_ONLY = new Set(['mayra', 'ganeshpujan'])
 
 /** Whether an event (by key) is shown for the current category. */
 export function isEventActive(key: string): boolean {
